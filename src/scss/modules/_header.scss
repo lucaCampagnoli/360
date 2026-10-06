@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  flex-direction: column; // les bandes empilées
+  font-family: "Europa_Grotesk", sans-serif;
+  font-size: 24px;
+  border: 1px solid var(--Text-fill-color, #1a1a1a);
+}
+.header__home {
+  display: flex;
+  padding-left: 10px;
+  border: 1px solid var(--Text-fill-color, #1a1a1a);
+  background-color: #ff3300;
+  text-decoration: none;
+  transition: background-color 0.25s ease-in-out;
+
+  &:hover {
+    background-color: #ffffff;
+  }
+}
+.header__theme {
+  display: flex;
+  padding-left: 10px;
+  background-color: #ffcdff;
+  border: 1px solid var(--Text-fill-color, #1a1a1a);
+  text-decoration: none;
+  transition: background-color 0.25s ease-in-out;
+
+  &:hover {
+    background-color: #ffffff;
+  }
+}
+.header__back {
+  display: flex;
+  padding-left: 10px;
+  background-color: #ffca00;
+  border: 1px solid var(--Text-fill-color, #1a1a1a);
+  text-decoration: none;
+  transition: background-color 0.25s ease-in-out;
+
+  &:hover {
+    background-color: #ffffff;
+  }
+}
