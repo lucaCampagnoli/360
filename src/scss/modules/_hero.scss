@@ -1,0 +1,56 @@
+.hero {
+  background-image: url(../assets/images/durant-back.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%),
+    url(../assets/images/durant-back.jpeg) lightgray 0px 0.51px / 100% 169.987%
+      no-repeat;
+
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Europa_Grotesk", sans-serif;
+  padding: 50px;
+}
+
+.hero__title {
+  font-size: 96px;
+  text-align: center;
+  line-height: 75%;
+}
+
+.hero__chapo {
+  font-size: 24px;
+  text-align: center;
+}
+.hero__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  opacity: 75%;
+  font-size: 18px;
+}
+.hero_content {
+  display: flex;
+  width: 853px;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.hero_title_sub {
+  gap: 10px;
+}
+.label {
+  width: 100%;
+}
+.culture:hover {
+  transform: rotate(7deg);
+}
