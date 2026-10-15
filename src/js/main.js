@@ -75,4 +75,39 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isDown) rafId = requestAnimationFrame(smoothScroll);
     }
   });
+  /* ============ HORLOGE LIVE DU TICKET ============ */
+  const clock = document.querySelector(".receipt__clock");
+  if (clock) {
+    function tick() {
+      const now = new Date();
+      const date = now.toLocaleDateString("fr-CH");
+      const time = now.toLocaleTimeString("fr-CH", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+      clock.textContent = date + "  " + time;
+    }
+    tick(); // affiche tout de suite
+    setInterval(tick, 1000); // met à jour chaque seconde
+  }
+  const receipt = document.querySelector(".receipt");
+  if (receipt) {
+    const colors = [
+      "--color-mode",
+      "--color-musique",
+      "--color-culture",
+      "--color-theme",
+    ];
+    const root = getComputedStyle(document.documentElement);
+
+    receipt.addEventListener("mouseenter", () => {
+      const pick = colors[Math.floor(Math.random() * colors.length)];
+      const color = root.getPropertyValue(pick).trim();
+      receipt.style.background = color;
+    });
+    receipt.addEventListener("mouseleave", () => {
+      receipt.style.background = "#fff"; // retour au blanc
+    });
+  }
 });

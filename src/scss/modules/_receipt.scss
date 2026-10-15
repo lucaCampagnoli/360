@@ -82,3 +82,23 @@
 .receipt__links a {
   text-decoration: underline;
 }
+
+.receipt {
+  position: relative;
+}
+
+.receipt {
+  animation: print 1.2s ease-out;
+  transform-origin: top;
+  transition: background 0.4s ease;
+  transform: scale(1.1);
+}
+
+.receipt__clock {
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.receipt {
+}
