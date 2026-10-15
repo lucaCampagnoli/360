@@ -14,6 +14,12 @@
   container-type: inline-size; // ← la carte devient l'unité de mesure
 }
 
+.music_list::-webkit-scrollbar {
+  display: none;
+}
+.music_list {
+  user-select: none;
+}
 .card__img {
   position: absolute;
   inset: 0;
@@ -94,6 +100,9 @@
 }
 
 .card__cta {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   font-size: 1vw;
   padding: 3cqw 6cqw;
   font-family: var(--font-display);
@@ -102,7 +111,36 @@
   padding: 10px 22px;
   border: 2px solid #fff;
   border-radius: 999px;
-  color: #fff;
+  color: #ffffff;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+    transform: rotate(-3deg) scale(1.05);
+    transition:
+      transform 0.5s ease,
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+}
+
+.lcard__cta {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 1vw;
+  padding: 3cqw 6cqw;
+  font-family: var(--font-display);
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 22px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  color: #ffffff;
   text-decoration: none;
   transition:
     background-color 0.25s ease,

@@ -1,43 +1,78 @@
 document.addEventListener("DOMContentLoaded", () => {
+  /* ============ CURSEUR CUSTOM ============ */
   const cursor = document.querySelector(".cursor");
-  let mouseX = 0,
-    mouseY = 0;
-  let posX = 0,
-    posY = 0;
-  let prevX = 0,
-    prevY = 0;
+  if (cursor) {
+    let mouseX = 0,
+      mouseY = 0,
+      posX = 0,
+      posY = 0,
+      prevX = 0,
+      prevY = 0;
 
-  // position de la souris
-  window.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
 
-  // boucle d'animation : suivi fluide + étirement selon la vitesse
-  function animate() {
-    posX += (mouseX - posX) * 0.25; // inertie (baisse = plus traînant)
-    posY += (mouseY - posY) * 0.25;
+    function animateCursor() {
+      posX += (mouseX - posX) * 0.35;
+      posY += (mouseY - posY) * 0.35;
+      const dx = posX - prevX,
+        dy = posY - prevY;
+      const speed = Math.min(Math.sqrt(dx * dx + dy * dy), 30);
+      const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+      cursor.style.left = posX + "px";
+      cursor.style.top = posY + "px";
+      cursor.style.transform = `translate(-50%, -50%) rotate(${angle}deg) scaleX(${1 + speed / 20})`;
+      prevX = posX;
+      prevY = posY;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
 
-    const dx = posX - prevX;
-    const dy = posY - prevY;
-    const speed = Math.min(Math.sqrt(dx * dx + dy * dy), 30);
-    const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
-
-    cursor.style.left = posX + "px";
-    cursor.style.top = posY + "px";
-    cursor.style.transform = `translate(-50%, -50%) rotate(${angle}deg) scaleX(${1 + speed / 20})`;
-
-    prevX = posX;
-    prevY = posY;
-    requestAnimationFrame(animate);
+    document.querySelectorAll("a, button, .card, .lcard").forEach((el) => {
+      el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
+      el.addEventListener("mouseleave", () =>
+        cursor.classList.remove("is-hover"),
+      );
+    });
   }
-  animate();
 
-  // grandit sur les éléments cliquables
-  document.querySelectorAll("a, button, .card").forEach((el) => {
-    el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
-    el.addEventListener("mouseleave", () =>
-      cursor.classList.remove("is-hover"),
-    );
+  /* ============ BANDEAU MUSIC : drag smooth + centrage ============ */
+  document.querySelectorAll(".music_list, .fashion_list").forEach((slider) => {
+    let isDown = false,
+      startX = 0,
+      scrollStart = 0;
+    let targetScroll = 0,
+      currentScroll = 0,
+      rafId = null;
+
+    window.addEventListener("load", () => {
+      slider.scrollLeft = (slider.scrollWidth - slider.clientWidth) / 2;
+    });
+    slider.addEventListener("mousedown", (e) => {
+      isDown = true;
+      startX = e.pageX;
+      scrollStart = slider.scrollLeft;
+      targetScroll = currentScroll = slider.scrollLeft;
+      if (cursor) cursor.classList.add("is-grabbing");
+      smoothScroll();
+    });
+    document.addEventListener("mouseup", () => {
+      if (!isDown) return;
+      isDown = false;
+      if (cursor) cursor.classList.remove("is-grabbing");
+      cancelAnimationFrame(rafId);
+    });
+    document.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      targetScroll = scrollStart - (e.pageX - startX) * 1.5;
+    });
+    function smoothScroll() {
+      currentScroll += (targetScroll - currentScroll) * 0.12;
+      slider.scrollLeft = currentScroll;
+      if (isDown) rafId = requestAnimationFrame(smoothScroll);
+    }
   });
 });

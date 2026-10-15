@@ -1,7 +1,14 @@
 * {
   cursor: none;
+  user-select: none;
 }
-
+.cursor.is-grabbing {
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  mix-blend-mode: difference;
+}
 .cursor {
   position: fixed;
   top: 0;
@@ -70,4 +77,16 @@ body {
 
 .card__text {
   font-family: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overscroll-behavior-x: none; // ← bloque le geste "retour" au scroll horizontal
+}
+.music_list {
+  overscroll-behavior-x: contain; // le scroll reste DANS le bandeau
 }

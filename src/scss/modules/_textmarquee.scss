@@ -1,0 +1,42 @@
+.text-marquee {
+  border-block: 2px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  padding: 10px 0;
+}
+.text-marquee__track {
+  display: inline-block;
+  animation: textmarquee 40s linear infinite;
+  padding-left: 100%;
+}
+.text-marquee__track span {
+  padding-inline: 0.5em;
+}
+.text-marquee__track .dot {
+  color: var(--color-mode);
+} // le point en rouge accent
+
+@keyframes textmarquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.dot1 {
+  color: var(--color-mode);
+}
+.dot2 {
+  color: var(--color-theme);
+}
+.dot3 {
+  color: var(--color-culture);
+}
+.dot4 {
+  color: var(--color-musique);
+}

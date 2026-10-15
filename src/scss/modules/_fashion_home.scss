@@ -1,0 +1,24 @@
+.fashion_list {
+  --lcard-bg: var(--color-culture); // ← la couleur Fashion (jaune ? à toi)
+  // mêmes règles que .music_list
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+  scrollbar-width: none;
+  user-select: none;
+}
+.fashion_list::-webkit-scrollbar {
+  display: none;
+}
+.hl-title__word_fashion {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 27vw;
+  line-height: 1;
+  color: var(--color-ink);
+  margin-bottom: -100px;
+}
