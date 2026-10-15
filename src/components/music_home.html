@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>music_home</title>
+  </head>
+  <body>
+    <section class="music">
+      <div class="hl-title">
+        <span class="hl-title__word_music">MUSIC</span>
+        <a href="components/music.html" class="music-title-link">
+          <img
+            class="hl-title__graff"
+            src="assets/svg/music_default.svg"
+            alt=""
+          />
+        </a>
+      </div>
+      <div class="marquee">
+        <div class="marquee__track">
+          <!-- Copie 1 : vos includes -->
+          <include
+            src="components/little_card.html"
+            locals="{...Travis...}"
+          ></include>
+          <include
+            src="components/little_card.html"
+            locals="{...Frank...}"
+          ></include>
+          <include
+            src="components/little_card.html"
+            locals="{...Steve...}"
+          ></include>
+          <include
+            src="components/little_card.html"
+            locals="{...SZA...}"
+          ></include>
+
+          <!-- Copie 2 : EXACTEMENT les mêmes, re-collées -->
+          <include
+            src="components/little_card.html"
+            locals="{...Travis...}"
+          ></include>
+          <include
+            src="components/little_card.html"
+            locals="{...Frank...}"
+          ></include>
+          <include
+            src="components/little_card.html"
+            locals="{...Steve...}"
+          ></include>
+          <include
+            src="components/little_card.html"
+            locals="{...SZA...}"
+          ></include>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

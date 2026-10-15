@@ -1,21 +1,17 @@
 .hero {
-  background-image: url(../assets/images/durant-back.jpeg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%),
-    url(../assets/images/durant-back.jpeg) lightgray 0px 0.51px / 100% 169.987%
-      no-repeat;
+    url(../assets/images/durant-back.jpeg) center top / cover no-repeat;
 
   min-height: 100vh;
   width: 100%;
+  display: flex;
   display: flex;
   flex-direction: column;
   color: #ffffff;
   justify-content: center;
   align-items: center;
-
+  margin-top: -68px;
   font-family: "Europa_Grotesk", sans-serif;
   padding: 50px;
 }

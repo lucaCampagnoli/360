@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>little_card</title>
+  </head>
+  <body>
+    <article class="lcard">
+      <div class="lcard__content">
+        <h3 class="lcard__title">{{ title }}</h3>
+        <p class="lcard__sub">{{ sub }}</p>
+        <p class="lcard__text">{{ text }}</p>
+      </div>
+
+      <div class="lcard__meta">
+        <span>{{ date }}</span>
+        <span>{{ author }}</span>
+        <span>{{ time }}</span>
+      </div>
+
+      <a href="{{ link }}" class="card__cta">Découvrir</a>
+    </article>
+  </body>
+</html>

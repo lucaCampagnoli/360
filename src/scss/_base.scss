@@ -1,4 +1,40 @@
 * {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference; // effet négatif
+  transition:
+    width 0.25s ease,
+    height 0.25s ease;
+  // pas de transform ici : c'est le JS qui le gère
+}
+
+.cursor.is-hover {
+  width: 40px;
+  height: 40px;
+}
+
+// masqué sur mobile (pas de souris)
+@media (max-width: 768px) {
+  * {
+    cursor: auto;
+  }
+  .cursor {
+    display: none;
+  }
+}
+
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -11,4 +47,27 @@ a {
 img,
 video {
   display: block;
+}
+
+:root {
+  // Couleurs par catégorie
+  --color-mode: #ff3300; // orange
+  --color-musique: #0a4ce0; // bleu
+  --color-culture: #ffca00; // jaune (= votre "back")
+  --color-theme: #ffcdff; // rose
+
+  // Base
+  --color-ink: #1a1a1a; // texte / contours
+  --color-paper: #ffffff;
+
+  // Typo
+  --font-display: "Europa_Grotesk", sans-serif;
+  --font-body: "Source_Serif", serif;
+}
+body {
+  overflow-x: hidden;
+}
+
+.card__text {
+  font-family: var(--font-body);
 }

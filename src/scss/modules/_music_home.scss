@@ -1,0 +1,127 @@
+.hl-title {
+  position: relative;
+}
+.hl-title__word_music {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 36vw; // ← la taille PROPRE à MUSIC (plus gros/petit que HIGHLIGHTS)
+  line-height: 1;
+  color: var(--color-ink);
+}
+.hl-title__graff {
+  position: absolute;
+  top: 3vw; // dépasse en haut
+  left: 50%;
+  transform: translateX(-50%); // centré
+  width: 35%;
+  z-index: 3;
+  transition: transform 0.25s ease; // pour l'animation
+}
+
+.hl-title__graff img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hl-title__graff:hover {
+  transform: translateX(-50%) rotate(5deg) scale(1.05);
+}
+
+.lcard {
+  flex: 0 0 300px; // largeur fixe (pour le futur bandeau)
+  min-height: 440px;
+  background: var(--color-mode); // rouge/orange
+  color: #000;
+  border-radius: 16px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lcard__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.lcard__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 0.95;
+}
+
+.lcard__sub {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.lcard__text {
+  font-family: var(--font-body); // Source Serif
+  font-size: 0.85rem;
+  line-height: 1.45;
+  margin-top: 10px;
+}
+
+.lcard__meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: auto; // pousse en bas
+  padding-top: 16px;
+}
+
+.lcard__cta {
+  align-self: center;
+  margin-top: 16px;
+  padding: 9px 24px;
+  border: 2px solid #000;
+  border-radius: 999px;
+  color: #000;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    background: #000;
+    color: var(--color-mode);
+  }
+}
+
+.marquee {
+  overflow: hidden; // masque ce qui déborde
+  width: 100%;
+}
+
+.marquee__track {
+  display: flex;
+  gap: 25px;
+  width: max-content; // la piste fait la largeur de toutes les cartes
+  animation: scroll 40s linear infinite; // défile en boucle
+}
+
+// PAUSE au survol
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  } // -50% = une copie complète
+}
