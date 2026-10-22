@@ -70,6 +70,31 @@ video {
   // Typo
   --font-display: "Europa_Grotesk", sans-serif;
   --font-body: "Source_Serif", serif;
+
+  /* TITRES — fluides en vw */
+
+  --t-section: 14vw; /* pour les gros mots de section */
+  --t-display: 7vw; /* titre d'article */
+  --t-h2: 2.5vw; /* intertitres de section */
+  --t-h3: 1.4rem; /* petits intertitres (gras) */
+
+  /* LECTURE — fixes en rem (lisibilité) */
+  --t-chapo: 1.25rem; /* le chapô */
+  --t-body: 1rem; /* le corps */
+  --t-meta: 0.8rem; /* meta, tags, crédits */
+
+  /* ESPACEMENT — échelle sur ratio, respire avec l'écran */
+  --s-1: 0.5rem; /* 8px */
+  --s-2: 1rem; /* 16px */
+  --s-3: 1.5rem; /* 24px */
+  --s-4: 2rem; /* 32px */
+  --s-5: 3rem; /* 48px */
+  --s-6: 4rem; /* 64px */
+  --s-7: 6rem; /* 96px */
+
+  /* RYTHME */
+  --leading-tight: 0.75;
+  --leading-body: 1.55;
 }
 body {
   overflow-x: hidden;
@@ -81,6 +106,12 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* anciens Edge/IE */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
 }
 
 html,
@@ -89,4 +120,12 @@ body {
 }
 .music_list {
   overscroll-behavior-x: contain; // le scroll reste DANS le bandeau
+}
+
+.hero,
+.highlights,
+.music,
+.fashion,
+.culture-section {
+  padding-block: var(--s-7); /* de l'air en haut et en bas */
 }

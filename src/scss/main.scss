@@ -1,3 +1,6 @@
+body {
+  background-color: white;
+}
 @import "font";
 @import "base";
 @import "layout";
@@ -12,3 +15,9 @@
 @import "modules/fashion_home";
 @import "modules/receipt";
 @import "modules/textmarquee";
+@import "modules/culture_home";
+@import "modules/gallery";
+@import "modules/big-footer";
+@import "modules/article";
+@import "modules/scroll-progress";
+@import "modules/article-extras";

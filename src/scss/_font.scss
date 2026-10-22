@@ -9,3 +9,8 @@
   src: url("../assets/font/PPMori-Regular.otf") format("opentype");
   font-weight: normal;
 }
+@font-face {
+  font-family: "Source_Serif"; /* ← MÊME nom que le Regular */
+  src: url("../assets/font/PPMori-Black.otf") format("opentype");
+  font-weight: 700;
+}

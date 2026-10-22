@@ -1,16 +1,16 @@
 .card_list {
   display: flex;
-  gap: 0px;
+  gap: 15px;
+  margin: 50px;
 }
 
 .card {
   flex: 1;
-  /* on retire aspect-ratio */
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: visible;
-  align-items: flex-end;
+  align-items: center;
   container-type: inline-size; // ← la carte devient l'unité de mesure
 }
 
@@ -60,7 +60,7 @@
 
 // Contenu en bas, aligné à gauche
 .card__content {
-  margin-top: 400px;
+  margin-top: 100px;
   gap: 10px;
   position: relative;
   z-index: 2;
@@ -84,12 +84,11 @@
 .card__sub {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 4cqw;
+  font-size: 24px;
 }
 
 .card__text {
-  font-size: 2cqw; // chapô, fixe et lisible
-  line-height: 1;
+  font-size: 18px; // chapô, fixe et lisible
   opacity: 0.8;
   max-width: 90%;
 

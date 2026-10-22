@@ -1,0 +1,201 @@
+/* CONTENEUR — centré, les marges latérales que tu aimais */
+.art {
+  --accent: var(--color-theme);
+  width: 100%;
+  max-width: 1300px;
+  margin-inline: auto;
+  padding: var(--s-6) var(--s-4);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+/* VARIANTES CATÉGORIE */
+.art--music {
+  --accent: var(--color-mode);
+}
+.art--fashion {
+  --accent: var(--color-culture);
+}
+.art--culture {
+  --accent: var(--color-theme);
+}
+
+/* TITRE */
+.art__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-display);
+  line-height: var(--leading-tight);
+  margin-top: var(--s-2);
+}
+
+/* FILET POINTILLÉ */
+.art__dash {
+  border-top: 2px dashed var(--color-ink);
+}
+
+/* CONTENU 2 COLONNES FLEX */
+.art__content {
+  display: flex;
+  gap: var(--s-5);
+  align-items: stretch; /* même hauteur */
+  border-bottom: 2px solid var(--color-ink);
+  padding-bottom: var(--s-4);
+  padding-top: var(--s-4);
+}
+.art__left,
+.art__right {
+  flex: 1; /* même largeur */
+  min-width: 0;
+}
+
+/* COLONNE GAUCHE : texte + image fill */
+.art__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.art__textblock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+/* CHAPÔ */
+.art__chapo {
+  font-family: var(--font-display);
+  font-weight: 1000;
+  font-size: var(--t-chapo);
+  line-height: var(--leading-body);
+}
+
+/* META */
+.art__meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-meta);
+}
+
+.art__imgwrap {
+  flex: 1; // prend la largeur de sa colonne
+  position: relative; // repère pour l'image
+  min-height: 0;
+  overflow: hidden;
+}
+.art__img {
+  position: absolute; // ← ne pousse plus la hauteur
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // remplit en se recadrant
+  display: block;
+}
+
+/* CORPS LISIBLE */
+.art p {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--leading-body);
+}
+
+/* INTERTITRES */
+.art__h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-h2);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--s-3);
+}
+.art__h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-h3);
+  margin: var(--s-2) 0 var(--s-2);
+}
+
+/* ENCADRÉ — couleur catégorie */
+.art__block {
+  background: var(--accent);
+  border: 2px solid var(--color-ink);
+  border-radius: 16px;
+  padding: var(--s-5);
+  overflow: hidden; // ← coupe l'image qui dépasse
+  display: flex;
+  gap: var(--s-5);
+  align-items: stretch;
+}
+.art__block-img {
+  flex: 1;
+  width: 50px;
+  aspect-ratio: 4 / 3; // ← format fixe : l'image se recadre dedans
+  object-fit: cover;
+  min-height: 0;
+  display: block;
+  border-radius: 8px;
+}
+.art__block-text {
+  flex: 1;
+}
+.art__block {
+  background: var(--accent);
+  border: 2px solid var(--color-ink);
+  border-radius: 16px;
+  padding: var(--s-3);
+  overflow: hidden; // ← coupe l'image qui dépasse
+  display: flex;
+  gap: var(--s-5);
+  align-items: stretch;
+}
+
+/* PULL-QUOTE — couleur catégorie */
+.art__quote {
+  background: var(--accent);
+  border: 2px solid var(--color-ink);
+  border-radius: 16px;
+  padding: var(--s-2);
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-chapo);
+  line-height: var(--leading-body);
+  text-align: center;
+}
+
+/* PIED */
+.art__foot {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid var(--color-ink);
+  padding-top: var(--s-3);
+  font-family: var(--font-display);
+  font-size: var(--t-meta);
+}
+.footer_title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 12vw;
+  color: var(--color-ink);
+}
+
+/* RESPONSIVE : tout en une colonne sous 768px */
+@media (max-width: 768px) {
+  .art__content,
+  .art__block {
+    flex-direction: column;
+  }
+  .art__img {
+    height: 50vh;
+  }
+}
+body {
+  background-color: white;
+}
+
+.art strong {
+  font-weight: 700;
+}

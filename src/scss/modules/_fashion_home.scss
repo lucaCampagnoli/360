@@ -4,9 +4,18 @@
   display: flex;
   gap: 20px;
   overflow-x: auto;
-  padding: 20px;
   scrollbar-width: none;
   user-select: none;
+  margin-bottom: 100px;
+  border: 2px solid var(--color-ink);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.9);
+  margin-left: 25px;
+  margin-right: 25px;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 50px;
+  scrollbar-width: none;
 }
 .fashion_list::-webkit-scrollbar {
   display: none;
@@ -20,5 +29,5 @@
   font-size: 27vw;
   line-height: 1;
   color: var(--color-ink);
-  margin-bottom: -100px;
+  margin-bottom: 00px;
 }

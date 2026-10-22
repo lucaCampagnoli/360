@@ -1,0 +1,32 @@
+.culture_list {
+  --lcard-bg: var(--color-theme); // ← rose
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  user-select: none;
+  margin-bottom: 100px;
+  border: 2px solid var(--color-ink);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.9);
+  margin-left: 25px;
+  margin-right: 25px;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 50px;
+  scrollbar-width: none;
+}
+.culture_list::-webkit-scrollbar {
+  display: none;
+}
+
+.hl-title__word_culture {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 25vw;
+  line-height: 1;
+  color: var(--color-ink);
+  margin-bottom: 00px;
+}

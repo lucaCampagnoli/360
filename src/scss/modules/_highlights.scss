@@ -15,14 +15,3 @@
   border-top: 2px dashed var(--color-ink);
   padding: 0px;
 }
-
-.card_list {
-  display: flex;
-  flex-direction: row;
-  gap: 16px; // l'espace entre les cartes
-  align-items: stretch; // même hauteur pour les trois
-}
-
-.card {
-  flex: 1; // chaque carte = 1/3 de la largeur
-}

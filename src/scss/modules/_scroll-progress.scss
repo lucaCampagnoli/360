@@ -1,0 +1,19 @@
+.header {
+  position: sticky; /* le header reste collé en haut */
+  top: 0;
+  z-index: 100;
+  /* ... gardez vos styles existants (padding, flex, etc.) ... */
+}
+
+.scroll-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0; /* collée au bas de l'écran */
+  z-index: 9999;
+  height: 6px;
+  background: var(--color-musique);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+  will-change: transform;
+}
