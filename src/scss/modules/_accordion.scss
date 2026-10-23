@@ -1,0 +1,118 @@
+/* ===== PAGE THÈME — DA 360 ===== */
+.themes {
+  max-width: 1300px;
+  margin-inline: auto;
+  padding: var(--s-6) var(--s-4);
+}
+.themes__head {
+  margin-bottom: var(--s-5);
+}
+.themes__kicker {
+  font-family: "Europa_Grotesk", sans-serif;
+  font-size: var(--t-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+.themes__title {
+  font-family: "Europa_Grotesk", sans-serif;
+  font-size: var(--t-display);
+  line-height: var(--leading-tight);
+  margin-top: var(--s-2);
+}
+
+.theme-row {
+  --accent: var(--color-mode);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-3);
+  border-top: 2px solid var(--color-ink);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+.theme-row:last-of-type {
+  border-bottom: 2px solid var(--color-ink);
+}
+.theme-row--music {
+  --accent: var(--color-mode);
+}
+.theme-row--fashion {
+  --accent: var(--color-culture);
+}
+.theme-row--culture {
+  --accent: var(--color-theme);
+}
+
+/* l'accent remplit la ligne de gauche à droite au survol */
+.theme-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-row:hover::before {
+  transform: scaleX(1);
+}
+
+.theme-row__num {
+  flex: 0 0 auto;
+  font-family: "Europa_Grotesk", sans-serif;
+  font-size: var(--t-h3);
+  opacity: 0.5;
+}
+.theme-row__name {
+  flex: 1;
+  font-family: "Europa_Grotesk", sans-serif;
+  font-size: 8vw;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+.theme-row__desc {
+  flex: 0 0 auto;
+  max-width: 16ch;
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  text-align: right;
+}
+.theme-row__arrow {
+  flex: 0 0 auto;
+  font-family: "Europa_Grotesk", sans-serif;
+  font-size: var(--t-h2);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.theme-row:hover .theme-row__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .theme-row {
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    padding: var(--s-3) var(--s-2);
+  }
+  .theme-row__name {
+    flex-basis: 100%;
+    font-size: 14vw;
+  }
+  .theme-row__desc {
+    max-width: none;
+    text-align: left;
+  }
+  .theme-row__arrow {
+    opacity: 1;
+    transform: none;
+  }
+}

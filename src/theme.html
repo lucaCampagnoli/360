@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thèmes — trois cent 60</title>
+    <link rel="stylesheet" href="scss/main.scss" />
+  </head>
+  <body>
+    <div class="cursor"></div>
+    <include src="components/header.html"></include>
+
+    <section class="themes">
+      <header class="themes__head">
+        <span class="themes__kicker">Les univers</span>
+        <h1 class="themes__title">Choisissez votre angle.</h1>
+      </header>
+
+      <nav class="themes__list">
+        <a href="music.html" class="theme-row theme-row--music">
+          <span class="theme-row__num">01</span>
+          <span class="bigfoot__line theme-row__name">Musique</span>
+          <span class="theme-row__desc">Le son d'une génération</span>
+          <span class="theme-row__arrow">→</span>
+        </a>
+
+        <a href="fashion.html" class="theme-row theme-row--fashion">
+          <span class="theme-row__num">02</span>
+          <span class="bigfoot__line theme-row__name">Mode</span>
+          <span class="theme-row__desc">Le vestiaire qui raconte l'époque</span>
+          <span class="theme-row__arrow">→</span>
+        </a>
+
+        <a href="culture.html" class="theme-row theme-row--culture">
+          <span class="theme-row__num">03</span>
+          <span class="bigfoot__line theme-row__name">Culture</span>
+          <span class="theme-row__desc">Sport, écrans, images</span>
+          <span class="theme-row__arrow">→</span>
+        </a>
+      </nav>
+    </section>
+    <script src="js/main.js" type="module"></script>
+  </body>
+</html>

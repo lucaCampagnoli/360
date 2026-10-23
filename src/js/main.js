@@ -187,113 +187,233 @@ document.addEventListener("DOMContentLoaded", () => {
         Math.max(1, Math.round(words / 200)) + " min de lecture";
     }
 
-    // C. Sommaire auto + surlignage de la section active
-    var toc = document.querySelector(".art-toc__list");
-    var heads = art.querySelectorAll("h2"); // ← seulement les h2 (dont "À lire aussi")
-    if (toc && heads.length && "IntersectionObserver" in window) {
-      heads.forEach(function (h, i) {
-        if (!h.id) h.id = "sec-" + i;
-        var li = document.createElement("li");
-        li.innerHTML =
-          '<a class="art-toc__link" href="#' +
-          h.id +
-          '">' +
-          h.textContent +
-          "</a>";
-        toc.appendChild(li);
-      });
-      var links = toc.querySelectorAll(".art-toc__link");
-      var spy = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              links.forEach(function (l) {
-                l.classList.remove("is-active");
-              });
-              var a = toc.querySelector('a[href="#' + e.target.id + '"]');
-              if (a) a.classList.add("is-active");
-            }
-          });
-        },
-        { rootMargin: "-10% 0px -50% 0px" },
-      );
-      heads.forEach(function (h) {
-        spy.observe(h);
-      });
-    }
+    // ===================== ARTICLES : enrichissement + lecture infinie =====================
+    const firstArt = document.querySelector(".art");
+    if (firstArt) {
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
-    // B. Révélation au scroll (coupée si l'utilisateur réduit le mouvement)
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduce && "IntersectionObserver" in window) {
-      var targets = art.querySelectorAll("p, blockquote, .art__block, h2");
-      targets.forEach(function (t) {
-        t.classList.add("reveal");
-      });
-      var io = new IntersectionObserver(
-        function (entries, obs) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              e.target.classList.add("is-in");
-              obs.unobserve(e.target);
+      // --- temps de lecture + reveal sur un .art donné ---
+      function enhanceArticle(art) {
+        const slot = art.querySelector(".art__readtime");
+        if (slot) {
+          const words = art.innerText.trim().split(/\s+/).length;
+          slot.textContent =
+            Math.max(1, Math.round(words / 200)) + " min de lecture";
+        }
+        if (!reduce && "IntersectionObserver" in window) {
+          const targets = art.querySelectorAll(
+            "p, blockquote, .art__block, h2",
+          );
+          targets.forEach((t) => t.classList.add("reveal"));
+          const io = new IntersectionObserver(
+            (entries, obs) => {
+              entries.forEach((e) => {
+                if (e.isIntersecting) {
+                  e.target.classList.add("is-in");
+                  obs.unobserve(e.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -10% 0px" },
+          );
+          targets.forEach((t) => io.observe(t));
+        }
+      }
+
+      // --- sommaire : uniquement sur le 1er article ---
+      // --- sommaire dynamique : suit l'article courant ---
+      const tocList = document.querySelector(".art-toc__list");
+      const tocNav = document.querySelector(".art-toc");
+      let sectionSpy = null;
+      let idc = 0;
+
+      function showTocFor(art) {
+        if (!tocList) return;
+        const heads = art.querySelectorAll("h2");
+        tocList.innerHTML = "";
+        if (sectionSpy) sectionSpy.disconnect();
+        if (!heads.length) {
+          if (tocNav) tocNav.style.display = "none";
+          return;
+        }
+        if (tocNav) tocNav.style.display = "";
+        heads.forEach((h) => {
+          if (!h.id) h.id = "sec-" + idc++;
+          const li = document.createElement("li");
+          li.innerHTML =
+            '<a class="art-toc__link" href="#' +
+            h.id +
+            '">' +
+            h.textContent +
+            "</a>";
+          tocList.appendChild(li);
+        });
+        const links = tocList.querySelectorAll(".art-toc__link");
+        sectionSpy = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("is-active"));
+                const a = tocList.querySelector(
+                  'a[href="#' + e.target.id + '"]',
+                );
+                if (a) a.classList.add("is-active");
+              }
+            });
+          },
+          { rootMargin: "-10% 0px -50% 0px" },
+        );
+        heads.forEach((h) => sectionSpy.observe(h));
+      }
+
+      // détecte quel article occupe le centre de l'écran → bascule le sommaire
+      let currentArt = null;
+      const artObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting && e.target !== currentArt) {
+              currentArt = e.target;
+              showTocFor(e.target);
             }
           });
         },
-        { rootMargin: "0% 0px 0% 0px" },
+        { rootMargin: "-45% 0px 20% 0px" },
       );
-      targets.forEach(function (t) {
-        io.observe(t);
-      });
+      artObserver.observe(firstArt);
+      showTocFor(firstArt); // affiche tout de suite celui du 1er
+      // --- cartes "à lire aussi" d'un .art (3 au hasard) ---
+      function fillRelated(art) {
+        const relList = art.querySelector(".related__list");
+        if (!relList) return;
+        let pool = ARTICLES.filter((a) => !loaded.has(a.href));
+        if (pool.length < 3) pool = ARTICLES.slice();
+        for (let k = pool.length - 1; k > 0; k--) {
+          const j = Math.floor(Math.random() * (k + 1));
+          [pool[k], pool[j]] = [pool[j], pool[k]];
+        }
+        relList.innerHTML = pool
+          .slice(0, 3)
+          .map(
+            (a) =>
+              '<div class="related__item related__item--' +
+              a.cat +
+              '">' +
+              '<article class="lcard"><div class="lcard__content">' +
+              '<h3 class="lcard__title">' +
+              a.title +
+              "</h3>" +
+              '<p class="lcard__sub">' +
+              a.sub +
+              "</p>" +
+              '<p class="lcard__text">' +
+              a.text +
+              "</p>" +
+              '</div><a href="' +
+              a.href +
+              '" class="lcard__cta">Découvrir</a></article></div>',
+          )
+          .join("");
+      }
+
+      // --- suivi des articles déjà chargés ---
+      const loaded = new Set();
+      loaded.add(location.pathname.split("/").pop() || "index.html");
+      function pickNext() {
+        let pool = ARTICLES.filter((a) => !loaded.has(a.href));
+        if (!pool.length) pool = ARTICLES.slice();
+        return pool[Math.floor(Math.random() * pool.length)];
+      }
+
+      // --- prépare la pilule "article suivant" et la place en tout dernier ---
+      function setPill(art, article) {
+        const pill = art.querySelector(".next-article");
+        if (!pill || !article) return null;
+        pill.setAttribute("href", article.href);
+        const t = pill.querySelector(".next-article__title");
+        if (t) t.textContent = article.title + " — " + article.sub;
+        art.appendChild(pill); // la pilule descend tout en bas
+        pill.addEventListener("click", (e) => {
+          e.preventDefault();
+          loadNext();
+        });
+        return pill;
+      }
+
+      // init 1er article
+      enhanceArticle(firstArt);
+      fillRelated(firstArt);
+      let pending = pickNext();
+      loaded.add(pending.href);
+      let currentPill = setPill(firstArt, pending);
+
+      // --- moteur de la lecture infinie ---
+      let pull = 0,
+        busy = false;
+      const threshold = 700;
+      const atBottom = () =>
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      const feedback = () => {
+        if (currentPill)
+          currentPill.style.setProperty(
+            "--pull",
+            Math.min(pull / threshold, 1),
+          );
+      };
+
+      async function loadNext() {
+        if (busy || !pending) return;
+        busy = true;
+        if (currentPill) currentPill.classList.add("is-loading");
+        try {
+          const res = await fetch(pending.href);
+          const doc = new DOMParser().parseFromString(
+            await res.text(),
+            "text/html",
+          );
+          const art = doc.querySelector(".art");
+          if (!art) {
+            busy = false;
+            return;
+          }
+          const toc = art.querySelector(".art-toc"); // pas de 2e sommaire
+          if (toc) toc.remove();
+          fillRelated(art);
+          const next = pickNext();
+          loaded.add(next.href);
+          const newPill = setPill(art, next);
+          art.classList.add("art--incoming");
+          firstArt.parentNode.appendChild(art);
+          artObserver.observe(art); // le nouvel article entre dans le suivi du sommaire
+          requestAnimationFrame(() => art.classList.add("art--in"));
+          enhanceArticle(art);
+          pending = next;
+          currentPill = newPill;
+          pull = 0;
+        } catch (err) {
+          if (pending) window.location.href = pending.href; // secours : navigation
+        } finally {
+          busy = false;
+        }
+      }
+
+      window.addEventListener(
+        "wheel",
+        (e) => {
+          if (busy) return;
+          if (e.deltaY > 0 && atBottom()) {
+            pull += e.deltaY;
+            feedback();
+            if (pull >= threshold) loadNext();
+          } else if (e.deltaY < 0) {
+            pull = 0;
+            feedback();
+          }
+        },
+        { passive: true },
+      );
     }
   })();
-  // E. Article suivant aléatoire
-  // Base commune des articles
-  var articles = ARTICLES;
-  var current = location.pathname.split("/").pop();
-  var pool = articles.filter(function (a) {
-    return a.href !== current;
-  });
-  for (var k = pool.length - 1; k > 0; k--) {
-    // mélange
-    var j = Math.floor(Math.random() * (k + 1));
-    var tmp = pool[k];
-    pool[k] = pool[j];
-    pool[j] = tmp;
-  }
-
-  // D. "À lire aussi" — 3 cartes au hasard, couleur selon la catégorie
-  var relList = document.querySelector(".related__list");
-  if (relList) {
-    relList.innerHTML = pool
-      .slice(0, 3)
-      .map(function (a) {
-        return (
-          '<div class="related__item related__item--' +
-          a.cat +
-          '">' +
-          '<article class="lcard"><div class="lcard__content">' +
-          '<h3 class="lcard__title">' +
-          a.title +
-          "</h3>" +
-          '<p class="lcard__sub">' +
-          a.sub +
-          "</p>" +
-          '<p class="lcard__text">' +
-          a.text +
-          "</p>" +
-          '</div><a href="' +
-          a.href +
-          '" class="lcard__cta">Découvrir</a></article></div>'
-        );
-      })
-      .join("");
-  }
-
-  // E. Article suivant — 1 au hasard, différent des 3 ci-dessus
-  var next = document.querySelector(".next-article");
-  var np = pool[3] || pool[0];
-  if (next && np) {
-    next.href = np.href;
-    var t = next.querySelector(".next-article__title");
-    if (t) t.textContent = np.title + " — " + np.sub;
-  }
 });

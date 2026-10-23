@@ -95,38 +95,79 @@
   display: none;
 }
 
-/* E. Article suivant */
+/* E. Article suivant — pilule */
 .next-article {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  gap: var(--s-3);
-  padding: var(--s-5) 0;
-  border-top: 2px solid var(--color-ink);
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border: 2px solid var(--color-ink);
+  border-radius: 999px; /* pilule */
+  background: var(--color-paper);
   color: var(--color-ink);
   text-decoration: none;
-  transition: gap 0.2s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 .next-article:hover {
-  gap: var(--s-5);
-}
-.next-article__label {
-  font-size: var(--t-meta);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.6;
-}
-.next-article__title {
-  flex: 1;
-  font-size: var(--t-h3);
-  line-height: var(--leading-tight);
-}
-.next-article__arrow {
-  font-size: var(--t-h2);
-  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 var(--color-ink); /* ombre nette, style affiche */
 }
 
-.related__title,
-.next-article__title,
+/* le fond se remplit quand on force le scroll */
+.next-article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: calc(var(--pull, 0) * 100%);
+  background: var(--accent);
+  z-index: -1;
+  transition: width 0.08s linear;
+}
+.next-article.is-loading::before {
+  width: 100%;
+}
+
+.next-article__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
 .next-article__label {
   font-family: "Europa_Grotesk", sans-serif;
+  font-size: var(--t-meta);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.next-article__title {
+  font-family: "Europa_Grotesk", sans-serif;
+  font-size: var(--t-h3);
+  line-height: var(--leading-tight);
+  text-overflow: ellipsis; /* reste sur une ligne, pilule nette */
+}
+
+/* flèche dans un rond */
+.next-article__arrow {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid var(--color-ink);
+  border-radius: 50%;
+  font-size: var(--t-h3);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+.next-article:hover .next-article__arrow {
+  transform: translateX(5px);
+  background: var(--accent);
 }
