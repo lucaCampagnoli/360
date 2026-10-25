@@ -1,0 +1,136 @@
+/* ===================================================
+   PAGES CATÉGORIE — bâties sur .art
+   On n'ajoute QUE le spécifique ; .art / .related / .lcard
+   sont déjà stylés ailleurs.
+   =================================================== */
+
+/* police de base — tout hérite, plus de font-family à répéter */
+body {
+  font-family: var(--font-body);
+}
+
+/* les deux seuls libellés qui ont besoin de la font titre */
+.art__kicker,
+.art__more {
+  font-family: var(--font-display);
+}
+
+/* ---------- À LA UNE (reprend .art__content) ---------- */
+.cat-hero {
+  --hero-h: 560px;
+}
+.cat-hero .art__imgwrap {
+  min-height: var(--hero-h);
+}
+.cat-hero .art__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cat-hero .art__h2 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+.art__kicker {
+  display: inline-block;
+  margin-bottom: var(--s-2);
+  padding: var(--s-1) var(--s-3);
+  background: var(--accent);
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+  font-size: var(--t-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.art__more {
+  display: inline-block;
+  margin-top: var(--s-3);
+  font-weight: 700;
+  font-size: var(--t-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+/* ---------- EN BREF (cartes déroulantes, reprennent .art__block) ---------- */
+.art__brief {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4);
+}
+.art ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.brief-card {
+  display: block; /* annule le flex de .art__block */
+  position: relative;
+  overflow: hidden;
+  max-height: 220px; /* replié */
+  transition: max-height 0.4s ease;
+}
+.brief-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  background: linear-gradient(transparent, var(--accent));
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.brief-card.is-open::after {
+  opacity: 0;
+}
+.brief-card__toggle {
+  position: absolute;
+  bottom: var(--s-1);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: var(--s-1);
+  background: none;
+  border: none;
+  color: var(--color-ink);
+  cursor: pointer;
+  line-height: 1;
+}
+.brief-card__chevron {
+  display: block;
+  font-size: 26px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+.brief-card.is-open .brief-card__chevron {
+  transform: rotate(180deg);
+}
+
+.related .lcard {
+  text-decoration: none;
+  color: inherit;
+  transform: rotate(var(--rot, 0deg));
+}
+.related .lcard:hover {
+  transform: rotate(0deg) scale(1.025);
+}
+
+@media (max-width: 768px) {
+  .art__brief {
+    grid-template-columns: 1fr;
+  }
+}
+body:has(.art:not(.cat-page)) .footer-zone {
+  display: none;
+}
+
+.art__block--feature .art__imgwrap {
+  min-height: 400px;
+}
+.art__block {
+  display: flex;
+  align-items: center;
+}

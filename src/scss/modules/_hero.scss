@@ -1,52 +1,148 @@
-.hero {
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%),
-    url(../assets/images/durant-back.jpeg) center top / cover no-repeat;
+/* ===== LA UNE (home) ===== */
+.laune {
+  max-width: 1300px;
+  margin: var(--s-6) auto var(--s-5);
+  padding-inline: var(--s-4);
+}
 
-  min-height: 100vh;
-  width: 100%;
+.laune__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr; /* grosse | colonne des petites */
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--s-3);
+}
+
+/* la carte réutilisable */
+.laune__card {
+  position: relative;
   display: flex;
+  overflow: hidden;
+  border: 2px solid var(--color-ink);
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--color-paper);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.laune__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 8px 8px 0 var(--color-ink);
+}
+
+.laune__card--big {
+  grid-row: 1 / 3;
+  min-height: 480px;
+} /* prend les 2 lignes */
+.laune__card--small {
+  min-height: 230px;
+}
+
+/* image plein cadre + voile */
+.laune__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.laune__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+/* texte en bas */
+.laune__body {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  width: 100%;
+  padding: var(--s-5);
   display: flex;
   flex-direction: column;
-  color: #ffffff;
-  justify-content: center;
-  align-items: center;
-  margin-top: -68px;
-  font-family: "Europa_Grotesk", sans-serif;
-  padding: 50px;
+  gap: var(--s-2);
+}
+.laune__card--small .laune__body {
+  padding: var(--s-4);
 }
 
-.hero__title {
-  font-size: 96px;
-  text-align: center;
-  line-height: 75%;
+.laune__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: var(--leading-tight);
+}
+.laune__card--big .laune__title {
+  font-size: var(--t-display);
+}
+.laune__card--small .laune__title {
+  font-size: var(--t-h3);
 }
 
-.hero__chapo {
-  font-size: 24px;
-  text-align: center;
+.laune__chapo {
+  font-family: var(--font-body);
+  font-size: var(--t-chapo);
+  line-height: var(--leading-body);
+  max-width: 40ch;
 }
-.hero__meta {
+.laune__cta {
+  font-family: var(--font-display);
+  font-size: var(--t-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .laune__grid {
+    grid-template-columns: 1fr; /* tout en colonne */
+    grid-template-rows: auto;
+  }
+  .laune__card--big {
+    grid-row: auto;
+    min-height: 340px;
+  }
+  .laune__card--small {
+    min-height: 220px;
+  }
+}
+/* en-tête de section */
+.laune__head {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-  opacity: 75%;
-  font-size: 18px;
+  margin-bottom: var(--s-4);
+  padding-bottom: var(--s-2);
+  border-bottom: 2px solid var(--color-ink);
 }
-.hero_content {
-  display: flex;
-  width: 853px;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
+.laune__heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-h2);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
-.hero_title_sub {
-  gap: 10px;
+
+/* la carte peut rétrécir dans sa colonne (sinon débordement) */
+.laune__card {
+  min-width: 0;
 }
-.label {
-  width: 100%;
+
+/* titres : on autorise la coupure et on plafonne la grosse */
+.laune__title {
+  overflow-wrap: break-word;
 }
-.hero .culture:hover {
-  transform: rotate(7deg);
+.laune__card--big .laune__title {
+  font-size: clamp(
+    2.25rem,
+    3.2vw,
+    3.75rem
+  ); /* ← ne dépasse plus sur grand écran */
 }

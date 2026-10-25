@@ -1,11 +1,134 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>music</title>
+    <title>Music — trois cent 60</title>
+    <link rel="stylesheet" href="scss/main.scss" />
   </head>
   <body>
-    MUSIC
+    <div class="cursor"></div>
+    <include src="components/header.html"></include>
+
+    <article class="art art--music cat-page">
+      <header class="art__head">
+        <h1 class="art__title">Music</h1>
+      </header>
+
+      <div class="art__dash"></div>
+
+      <!-- À LA UNE (auto) -->
+      <div data-cat-hero="music"></div>
+
+      <!-- ENCADRÉ ÉDITORIAL (ton texte) -->
+      <aside class="art__block">
+        <div class="art__block-text">
+          <h2 class="art__h2">Le son d'une génération</h2>
+          <p>
+            De ceux qui le font à ceux qui le vivent : portraits, retours
+            attendus et mutations d'une scène qui ne tient jamais en place.
+          </p>
+        </div>
+      </aside>
+      <!-- POURQUOI ON ÉCOUTE -->
+      <div class="art__content">
+        <div class="art__right">
+          <h2 class="art__h2">Pourquoi on écoute</h2>
+          <p>
+            La musique n'est pas un décor. C'est la bande-son qu'on choisit pour
+            se souvenir, pour tenir, pour danser quand plus rien n'a de sens.
+            Chaque génération se reconnaît dans quelques voix — celles qui
+            disent tout haut ce qu'on garde tout bas.
+          </p>
+          <p>
+            Ici, on ne classe pas les artistes par chiffres : on raconte
+            pourquoi un album reste, pourquoi un refrain colle à une époque,
+            pourquoi certains sons deviennent des repères. Du rap aux nappes
+            R&B, du live qui transpire au studio obsessionnel, on suit celles et
+            ceux qui façonnent le goût d'aujourd'hui.
+          </p>
+        </div>
+        <div class="art__right">
+          <aside class="art__block art__block--feature">
+            <div class="art__block-text">
+              <h2 class="art__h2">L'artiste du mois</h2>
+              <p>
+                <strong>Frank Ocean.</strong> Rare, insaisissable, culte. Il a
+                fait du silence une stratégie et de chaque sortie un événement.
+                <em>Blonde</em>
+                reste la boussole de toute une génération — la preuve qu'on peut
+                disparaître et rester partout à la fois.
+              </p>
+            </div>
+            <div class="art__imgwrap">
+              <img
+                class="art__img"
+                src="assets/images/Frank.jpeg"
+                alt="Frank Ocean"
+              />
+            </div>
+          </aside>
+          <h3 class="art__h3">Ce qu'on défend</h3>
+          <p>
+            Pas de hiérarchie entre le mainstream et l'underground : ce qui
+            compte, c'est l'intention. Un tube peut être un chef-d'œuvre, un
+            morceau confidentiel peut changer une vie. On écoute tout, on juge
+            sur pièce.
+          </p>
+        </div>
+      </div>
+
+      <!-- EN BREF -->
+      <div class="art__brief">
+        <aside class="art__block brief-card" data-collapse>
+          <h3 class="art__h3">Sorties de la semaine</h3>
+          <ul>
+            <li>SZA — <em>Lana (deluxe)</em></li>
+            <li>Playboi Carti — <em>single surprise</em></li>
+            <li>Steve Lacy — <em>EP live</em></li>
+            <li>PARTYNEXTDOOR — <em>réédition</em></li>
+            <li>Frank Ocean — <em>Blonde, pressage vinyle</em></li>
+          </ul>
+          <button
+            class="brief-card__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Dérouler"
+          >
+            <span class="brief-card__chevron">⌄</span>
+          </button>
+        </aside>
+
+        <aside class="art__block brief-card" data-collapse>
+          <h3 class="art__h3">En concert</h3>
+          <ul>
+            <li>Travis Scott — Paris, 12 déc.</li>
+            <li>PARTYNEXTDOOR — Londres, 5 jan.</li>
+            <li>Steve Lacy — Bruxelles, 20 jan.</li>
+            <li>SZA — Amsterdam, 2 fév.</li>
+            <li>Playboi Carti — Berlin, 14 fév.</li>
+            <li>Drake — Zürich, 1 mars</li>
+          </ul>
+          <button
+            class="brief-card__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Dérouler"
+          >
+            <span class="brief-card__chevron">⌄</span>
+          </button>
+        </aside>
+      </div>
+
+      <!-- À LIRE AUSSI (auto) -->
+      <section class="related" data-cat-related="music"></section>
+    </article>
+
+    <blockquote class="art__quote">
+      On ne choisit pas une chanson : c'est elle qui nous choisit.
+      <strong>La musique colle aux moments qu'on n'oubliera pas.</strong>
+    </blockquote>
+    <include src="components/big-footer.html"></include>
+    <script src="js/main.js" type="module"></script>
   </body>
 </html>

@@ -1,80 +1,127 @@
+/* ===== BANDEAUX CATÉGORIE (home) — Musique / Mode / Culture ===== */
+.music,
+.fashion,
+.culture {
+  --accent: var(--color-mode);
+  padding: var(--s-6) var(--s-4);
+  border-top: 2px dashed var(--color-ink); /* filet, comme tes articles */
+}
+.music {
+  --accent: var(--color-mode);
+}
+.fashion {
+  --accent: var(--color-culture);
+}
+.culture {
+  --accent: var(--color-theme);
+}
+
+/* grand mot + graff */
 .hl-title {
   position: relative;
-}
-.hl-title__word_music {
-  display: block;
-  width: 100%;
   text-align: center;
+  margin-bottom: var(--s-3);
+}
+.hl-title__word_music,
+.hl-title__word_fashion,
+.hl-title__word_culture {
+  display: block;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 34vw; // ← la taille PROPRE à MUSIC (plus gros/petit que HIGHLIGHTS)
-  line-height: 1;
+  font-size: 15vw; /* grand mais plus "énorme", et responsive */
+  line-height: 0.82;
+  text-transform: uppercase;
   color: var(--color-ink);
-  margin-bottom: -100px;
 }
 .hl-title__graff {
   position: absolute;
-  top: 3vw; // dépasse en haut
+  top: 0;
   left: 50%;
-  transform: translateX(-50%); // centré
-  width: 35%;
+  transform: translateX(-50%);
+  width: 28%;
   z-index: 3;
-  transition: transform 0.25s ease; // pour l'animation
+  transition: transform 0.25s ease;
 }
-
 .hl-title__graff img {
   width: 100%;
   height: auto;
   display: block;
 }
-
 .hl-title__graff:hover {
   transform: translateX(-50%) rotate(5deg) scale(1.05);
 }
 
-.marquee {
-  overflow-x: auto; // scrollable à la main
-  scrollbar-width: none; // cache la barre (Firefox)
-}
-.marquee::-webkit-scrollbar {
-  display: none;
-} // cache la barre (Chrome/Safari)
-
-.marquee__track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-}
-
-.music_list {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  user-select: none;
-  margin-bottom: 100px;
-  border: 2px solid var(--color-ink);
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.9);
-  margin-left: 25px;
-  margin-right: 25px;
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 50px;
-  scrollbar-width: none;
-}
-
-.music_list::-webkit-scrollbar {
-  display: none;
-}
+/* chip "articles" (ta classe est la même pour les 3) */
 .articles_music {
   display: block;
-  text-align: center;
+  width: fit-content;
+  margin: 0 auto var(--s-4);
+  padding: var(--s-1) var(--s-3);
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 2vw;
+  font-size: var(--t-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--color-ink);
-  margin-left: 25px;
-  margin-right: 25px;
   border: 2px solid var(--color-ink);
+  border-radius: 999px;
+}
+
+/* le bandeau scrollable */
+.music_list,
+.fashion_list,
+.culture_list {
+  display: flex;
+  gap: var(--s-3);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  user-select: none;
+  padding: var(--s-4);
+  border: 2px solid var(--color-ink);
+  border-radius: 16px;
+  box-shadow: 6px 6px 0 var(--color-ink); /* ombre encre franche */
+  scrollbar-width: none;
+}
+.music_list::-webkit-scrollbar,
+.fashion_list::-webkit-scrollbar,
+.culture_list::-webkit-scrollbar {
+  display: none;
+}
+
+/* "Voir tout" aux deux bouts → pastille couleur catégorie */
+.lcard__seeall {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  min-width: 110px;
+  padding: var(--s-3);
+  font-family: var(--font-display);
+  font-size: var(--t-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--color-ink);
+  text-decoration: none;
+  background: var(--accent);
+  border: 2px solid var(--color-ink);
+  border-radius: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .music,
+  .fashion,
+  .culture {
+    padding: var(--s-5) var(--s-3);
+  }
+  .hl-title__word_music,
+  .hl-title__word_fashion,
+  .hl-title__word_culture {
+    font-size: 22vw;
+  }
+  .music_list,
+  .fashion_list,
+  .culture_list {
+    padding: var(--s-3);
+    box-shadow: 4px 4px 0 var(--color-ink);
+  }
 }

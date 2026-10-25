@@ -1,12 +1,19 @@
 .header {
   display: flex;
-  flex-direction: column; // les bandes empilées
+  flex-direction: column;
   font-family: "Europa_Grotesk", sans-serif;
   font-size: 24px;
   border: 1px solid var(--Text-fill-color, #1a1a1a);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.header.is-visible {
+  transform: translateY(0);
 }
 .header__home {
   display: flex;
@@ -42,5 +49,81 @@
   &:hover {
     background-color: #0d28da;
     color: white;
+  }
+}
+.burger {
+  display: none;
+} /* desktop : jamais de burger */
+
+@media (max-width: 768px) {
+  .header {
+    transform: none !important; /* pas de reveal sur mobile */
+    border: none;
+    background: transparent;
+  }
+  .cover__meta {
+    margin-right: 72px;
+  }
+
+  /* le bouton, en haut à droite, dans le style du site */
+  .burger {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 48px;
+    height: 48px;
+    padding: 13px;
+    background: var(--color-paper);
+    border: 2px solid var(--color-ink);
+    border-radius: 120px;
+    cursor: pointer;
+  }
+  .burger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-ink);
+    transition:
+      transform 0.25s ease,
+      opacity 0.2s ease;
+  }
+
+  /* menu fermé : liens cachés */
+  .header__home,
+  .header__theme,
+  .header__back {
+    display: none;
+  }
+
+  /* menu ouvert : plein écran, tes 3 couleurs en tiers */
+  .header.is-open {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .header.is-open .header__home,
+  .header.is-open .header__theme,
+  .header.is-open .header__back {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  /* burger → croix */
+  .header.is-open .burger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header.is-open .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  .header.is-open .burger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 }

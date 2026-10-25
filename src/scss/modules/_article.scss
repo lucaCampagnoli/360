@@ -4,6 +4,7 @@
   width: 100%;
   max-width: 1300px;
   margin-inline: auto;
+  margin-top: 75px;
   padding: var(--s-6) var(--s-4);
   box-sizing: border-box;
   display: flex;
@@ -42,7 +43,6 @@
   align-items: stretch; /* même hauteur */
   border-bottom: 2px solid var(--color-ink);
   padding-bottom: var(--s-4);
-  padding-top: var(--s-4);
 }
 .art__left,
 .art__right {

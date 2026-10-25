@@ -1,6 +1,7 @@
 body {
   background-color: white;
 }
+
 @import "font";
 @import "base";
 @import "layout";
@@ -8,8 +9,6 @@ body {
 @import "modules/header";
 @import "modules/hero";
 @import "modules/button";
-@import "modules/highlights";
-@import "modules/card";
 @import "modules/music_home";
 @import "modules/little_card";
 @import "modules/fashion_home";
@@ -24,3 +23,9 @@ body {
 @import "modules/transitions";
 @import "modules/theme";
 @import "modules/accordion";
+@import "modules/cover";
+@import "modules/music";
+
+body .header {
+  position: fixed !important;
+}

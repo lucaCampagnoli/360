@@ -416,4 +416,346 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
   })();
+  // ===== SLIDER DE COUVERTURE =====
+  const slider = document.querySelector("[data-slider]");
+  if (slider) {
+    const track = slider.querySelector(".slider__track");
+    const imgMap = {
+      "article.html": "durant-back.jpeg",
+      "article-sza.html": "SZA.jpeg",
+      "article-frank.html": "Frank.jpeg",
+      "article-mertra.html": "mertra.jpeg",
+      "article-doomsday.html": "doomsday.jpeg",
+    };
+    const imgFor = (a) =>
+      "assets/images/" +
+      (imgMap[a.href] ||
+        a.href.replace("article-", "").replace(".html", "") + ".jpg");
+    const label = (c) =>
+      c === "music" ? "Musique" : c === "fashion" ? "Mode" : "Culture";
+    const slide = (a) =>
+      '<a class="slide slide--' +
+      a.cat +
+      '" href="' +
+      a.href +
+      '" style="background-image:url(\'' +
+      imgFor(a) +
+      "')\">" +
+      '<div class="slide__inner">' +
+      '<span class="slide__tag">' +
+      label(a.cat) +
+      "</span>" +
+      '<span class="slide__title">' +
+      a.title +
+      "</span>" +
+      '<span class="slide__cta">Lire l\'article →</span>' +
+      "</div></a>";
+
+    // toutes les slides + un clone de la 1re pour boucler sans saut
+    track.innerHTML = ARTICLES.map(slide).join("") + slide(ARTICLES[0]);
+
+    const n = ARTICLES.length;
+    let i = 0;
+    const move = () => {
+      track.style.transition = "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
+      track.style.transform = "translateX(-" + i * 100 + "%)";
+    };
+    setInterval(() => {
+      i++;
+      move();
+      if (i === n) {
+        // on est sur le clone → on repart à 0, invisible
+        setTimeout(() => {
+          track.style.transition = "none";
+          i = 0;
+          track.style.transform = "translateX(0)";
+        }, 850);
+      }
+    }, 5000);
+  }
+  const header = document.querySelector(".header");
+  if (header) {
+    let scrolled = window.scrollY > 50;
+    let nearTop = false;
+    const update = () =>
+      header.classList.toggle("is-visible", scrolled || nearTop);
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        scrolled = window.scrollY > 50;
+        update();
+      },
+      { passive: true },
+    );
+
+    window.addEventListener("mousemove", (e) => {
+      nearTop = e.clientY < 200; // souris à moins de 60px du haut
+      update();
+    });
+
+    update();
+  }
+  const burger = document.querySelector("[data-burger]");
+  const hdr = document.querySelector(".header");
+  if (burger && hdr) {
+    burger.addEventListener("click", () => {
+      const open = hdr.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", open);
+    });
+    hdr
+      .querySelectorAll(".header__home, .header__theme, .header__back")
+      .forEach((a) =>
+        a.addEventListener("click", () => {
+          hdr.classList.remove("is-open");
+          burger.setAttribute("aria-expanded", "false");
+        }),
+      );
+  }
+  const galleryEl = document.querySelector("[data-gallery]");
+  if (galleryEl) {
+    const LINKS = {
+      sza: "article-sza.html",
+      sz: "article-sza.html",
+      frank: "article-frank.html",
+      carti: "article-carti.html",
+      pnd: "article-pnd.html",
+      livealbum: "article-livealbum.html",
+      lacy: "article-lacy.html",
+      drake: "article-drake.html",
+      travis: "article-travis.html",
+      corteiz: "article-corteiz.html",
+      mertra: "article-mertra.html",
+      mer: "article-mertra.html",
+      sneaker: "article-sneaker.html",
+      schiaparelli: "article-schiaparelli.html",
+      seoul: "article-seoul.html",
+      victoria: "article-victoria.html",
+      "stars-mode": "article-stars-mode.html",
+      gucci: "article-gucci.html",
+      durant: "article.html",
+      "durant-back": "article.html",
+      doomsday: "article-doomsday.html",
+      f1: "article-f1.html",
+      golf: "article-golf.html",
+      a24: "article-a24.html",
+      tennis: "article-tennis.html",
+      letterboxd: "article-letterboxd.html",
+      gaming: "article-gaming.html",
+      nba: "article-nba.html",
+      gorpcore: "article-gorpcore.html",
+    };
+
+    const IMAGES = [
+      "SZA.jpeg",
+      "SZ.jpg",
+      "Frank.jpeg",
+      "frank-2.jpg",
+      "frank-3.jpg",
+      "carti.jpg",
+      "carti-2.jpg",
+      "carti-3.jpg",
+      "pnd.jpg",
+      "pnd-2.jpg",
+      "pnd-3.jpg",
+      "livealbum.jpg",
+      "livealbum-2.jpg",
+      "livealbum-3.jpg",
+      "lacy.jpg",
+      "lacy-2.jpg",
+      "lacy-3.jpg",
+      "drake.jpg",
+      "drake-2.jpg",
+      "drake-3.jpg",
+      "travis.jpg",
+      "travis-2.jpg",
+      "travis-3.jpg",
+      "corteiz.jpg",
+      "corteiz-2.jpg",
+      "corteiz-3.jpg",
+      "mertra.jpeg",
+      "mer.jpg",
+      "sneaker.jpg",
+      "sneaker-2.jpg",
+      "schiaparelli.jpg",
+      "schiaparelli-2.jpg",
+      "schiaparelli-3.jpg",
+      "seoul.jpg",
+      "seoul-2.jpg",
+      "seoul-3.jpg",
+      "victoria.jpg",
+      "victoria-2.jpg",
+      "victoria-3.jpg",
+      "stars-mode.jpg",
+      "stars-mode-2.jpg",
+      "stars-mode-3.jpg",
+      "gucci.jpg",
+      "gucci-2.jpg",
+      "gucci-3.jpg",
+      "durant-back.jpeg",
+      "durant.jpg",
+      "durant-2.jpg",
+      "doomsday.jpeg",
+      "f1.jpg",
+      "f1-2.jpg",
+      "f1-3.jpg",
+      "golf.jpg",
+      "golf-2.jpg",
+      "golf-3.jpg",
+      "a24.jpg",
+      "a24-2.jpg",
+      "a24-3.jpg",
+      "tennis.jpg",
+      "tennis-2.jpg",
+      "letterboxd.jpg",
+      "letterboxd-2.jpg",
+      "letterboxd-3.jpg",
+      "gaming.jpg",
+      "gaming-2.jpg",
+      "gaming-3.jpg",
+      "nba.jpg",
+      "nba-2.jpg",
+      "nba-3.jpg",
+      "gorpcore.jpg",
+      "gorpcore-2.jpg",
+      "gorpcore-3.jpg",
+      "k.jpg",
+    ];
+
+    const stemOf = (n) =>
+      n
+        .replace(/\.[^.]+$/, "")
+        .replace(/-\d+$/, "")
+        .toLowerCase();
+
+    const itemHTML = (n) => {
+      const href = LINKS[stemOf(n)];
+      const img = `<img src="assets/images/${n}" loading="lazy" alt="">`;
+      return href
+        ? `<a class="gallery__item" href="${href}">${img}<span class="gallery__cta">Lire l'article →</span></a>`
+        : `<div class="gallery__item">${img}</div>`;
+    };
+
+    // on ne garde que les images qui chargent vraiment
+    const test = (n) =>
+      new Promise((res) => {
+        const im = new Image();
+        im.onload = () => res(n);
+        im.onerror = () => res(null);
+        im.src = "assets/images/" + n;
+      });
+
+    Promise.all(IMAGES.map(test)).then((results) => {
+      const ok = results.filter(Boolean);
+      const ROWS = 3;
+      const rows = Array.from({ length: ROWS }, () => []);
+      ok.forEach((n, i) => rows[i % ROWS].push(n));
+
+      galleryEl.innerHTML = rows
+        .map((imgs, r) => {
+          const content = imgs.map(itemHTML).join("");
+          return `<div class="marquee ${r % 2 ? "marquee--reverse" : ""}" style="--dur:${250 + r * 60}s">
+          <div class="marquee__track">${content}${content}</div>
+        </div>`;
+        })
+        .join("");
+    });
+  }
+  const IMG = {
+    "article-sza.html": "SZA.jpeg",
+    "article-frank.html": "Frank.jpeg",
+    "article-carti.html": "carti.jpg",
+    "article-pnd.html": "pnd.jpg",
+    "article-livealbum.html": "livealbum.jpg",
+    "article-lacy.html": "lacy.jpg",
+    "article-drake.html": "drake.jpg",
+    "article-travis.html": "travis.jpg",
+    "article-corteiz.html": "corteiz.jpg",
+    "article-mertra.html": "mertra.jpeg",
+    "article-sneaker.html": "sneaker.jpg",
+    "article-schiaparelli.html": "schiaparelli.jpg",
+    "article-seoul.html": "seoul.jpg",
+    "article-victoria.html": "victoria.jpg",
+    "article-stars-mode.html": "stars-mode.jpg",
+    "article-gucci.html": "gucci.jpg",
+    "article.html": "durant-back.jpeg",
+    "article-doomsday.html": "doomsday.jpeg",
+    "article-f1.html": "f1.jpg",
+    "article-golf.html": "golf.jpg",
+    "article-a24.html": "a24.jpg",
+    "article-tennis.html": "tennis.jpg",
+    "article-letterboxd.html": "letterboxd.jpg",
+    "article-gaming.html": "gaming.jpg",
+    "article-nba.html": "nba.jpg",
+    "article-gorpcore.html": "gorpcore.jpg",
+  };
+  const imgOf = (a) => "assets/images/" + (IMG[a.href] || "");
+
+  // À LA UNE — reprend l'intro 2 colonnes de l'article
+  document.querySelectorAll("[data-cat-hero]").forEach((el) => {
+    const list = ARTICLES.filter((x) => x.cat === el.dataset.catHero);
+    if (!list.length) return;
+    const [big, ...rest] = list;
+    const smalls = rest.slice(0, 2);
+
+    const bigCard = `
+    <a class="laune__card laune__card--big" href="${big.href}">
+      <img class="laune__img" src="${imgOf(big)}" alt="">
+      <div class="laune__body">
+        <h2 class="laune__title">${big.title}, ${big.sub}</h2>
+        <p class="laune__chapo">${big.text}</p>
+        <span class="laune__cta">Lire l'article →</span>
+      </div>
+    </a>`;
+
+    const smallCards = smalls
+      .map(
+        (a) => `
+    <a class="laune__card laune__card--small" href="${a.href}">
+      <img class="laune__img" src="${imgOf(a)}" alt="">
+      <div class="laune__body">
+        <h2 class="laune__title">${a.title}, ${a.sub}</h2>
+        <span class="laune__cta">Lire →</span>
+      </div>
+    </a>`,
+      )
+      .join("");
+
+    el.innerHTML = `
+    <header class="laune__head"><h2 class="laune__heading">À la une</h2></header>
+    <div class="laune__grid">${bigCard}${smallCards}</div>`;
+  });
+
+  // À LIRE AUSSI — tes cartes lcard existantes
+  document.querySelectorAll("[data-cat-related]").forEach((el) => {
+    const cat = el.dataset.catRelated;
+    const rest = ARTICLES.filter((x) => x.cat === cat).slice(1);
+    const cards = rest
+      .map(
+        (a) => `
+      <div class="related__item related__item--${cat}">
+        <a class="lcard" href="${a.href}">
+          <div class="lcard__content">
+            <h3 class="lcard__title">${a.title}</h3>
+            <p class="lcard__sub">${a.sub}</p>
+            <p class="lcard__text">${a.text}</p>
+          </div>
+          <span class="lcard__cta">Découvrir</span>
+        </a>
+      </div>`,
+      )
+      .join("");
+    el.innerHTML = `
+    <h2 class="related__title">À lire aussi</h2>
+    <div class="related__list">${cards}</div>`;
+  });
+  document.querySelectorAll("[data-collapse]").forEach((card) => {
+    const btn = card.querySelector(".brief-card__toggle");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const open = card.classList.toggle("is-open");
+      card.style.maxHeight = open ? card.scrollHeight + "px" : "";
+      btn.setAttribute("aria-expanded", open);
+    });
+  });
 });

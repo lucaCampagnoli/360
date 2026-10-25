@@ -87,10 +87,14 @@
 .themes {
   max-width: 1300px;
   margin-inline: auto;
-  padding: var(--s-6) var(--s-4);
-}
-.themes__head {
-  margin-bottom: var(--s-5);
+  padding: var(--s-6) var(--s-4); /* ← ta section thème */
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ← centre réel : le vide se répartit haut ET bas */
+  gap: var(--s-4);
+  padding: var(--s-5) var(--s-4);
+  box-sizing: border-box;
 }
 .themes__kicker {
   font-family: "Europa_Grotesk", sans-serif;
@@ -322,4 +326,10 @@
 }
 .theme-row:hover {
   color: var(--accent);
+}
+.themes--home {
+  margin-block: var(--s-6);
+}
+.themes--home .themes__title {
+  font-size: var(--t-h2);
 }

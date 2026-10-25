@@ -1,0 +1,191 @@
+/* ===== COUVERTURE — brutaliste 360 ===== */
+.cover {
+  min-height: 100dvh; /* ← au lieu de calc(100dvh - 4rem) */
+  display: flex;
+  flex-direction: column;
+}
+.cover__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-2) var(--s-3);
+  font-family: var(--font-display);
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.slider__track {
+  display: flex;
+  height: 100%;
+  align-items: stretch;
+}
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--s-5);
+  color: var(--color-paper);
+  text-decoration: none;
+  background-size: cover;
+  background-position: center;
+}
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.75), rgb(0 0 0 / 0.1) 55%);
+}
+.slide__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  max-width: 32ch;
+}
+.slide__tag {
+  --accent: var(--color-mode);
+  width: fit-content;
+  padding: var(--s-1) var(--s-3);
+  font-family: var(--font-display);
+  font-size: var(--t-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-ink);
+  background: var(--accent);
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+}
+.slide--music .slide__tag {
+  --accent: var(--color-mode);
+}
+.slide--fashion .slide__tag {
+  --accent: var(--color-culture);
+}
+.slide--culture .slide__tag {
+  --accent: var(--color-theme);
+}
+.slide__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-display);
+  line-height: var(--leading-tight);
+  text-transform: uppercase;
+}
+.slide__cta {
+  font-family: var(--font-display);
+  font-size: var(--t-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+/* le nuancier = nav + identité */
+.cover__swatches {
+  display: flex;
+  border-top: 2px solid var(--color-ink);
+}
+.sw {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 24vh;
+  padding: var(--s-3);
+  border-right: 2px solid var(--color-ink);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: flex 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sw:last-child {
+  border-right: 0;
+}
+.sw--music {
+  background: var(--color-mode);
+}
+.sw--fashion {
+  background: var(--color-culture);
+}
+.sw--culture {
+  background: var(--color-theme);
+}
+.sw:hover {
+  flex: 1.6;
+} /* le swatch survolé s'ouvre */
+.sw__hex {
+  font-family: var(--font-display);
+  font-size: var(--t-meta);
+  letter-spacing: 0.05em;
+}
+.sw__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 5vw;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .cover__swatches {
+    flex-direction: column;
+  }
+  .sw {
+    border-right: 0;
+    border-bottom: 2px solid var(--color-ink);
+    min-height: 14vh;
+  }
+  .sw:last-child {
+    border-bottom: 0;
+  }
+  .sw:hover {
+    flex: 1;
+  }
+  .sw__name {
+    font-size: 12vw;
+  }
+}
+.cover__slider {
+  flex: 1;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column; /* le track devient enfant flex */
+  overflow: hidden;
+}
+.slider__track {
+  flex: 1; /* remplit toute la hauteur du slider */
+  min-height: 0;
+  display: flex; /* et reste la rangée de slides */
+  align-items: stretch;
+}
+.slide {
+  flex: 0 0 100%; /* largeur pleine ; la hauteur s'étire toute seule */
+}
+.slider__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--color-ink);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.85);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.slider__nav:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+.slider__nav--prev {
+  left: var(--s-3);
+}
+.slider__nav--next {
+  right: var(--s-3);
+}

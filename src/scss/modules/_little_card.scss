@@ -23,29 +23,26 @@
 .lcard__title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 3vw;
-  line-height: 0.75;
+  font-size: 40px; /* gros */
+  line-height: 0.95;
 }
-
 .lcard__sub {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.25vw;
+  font-size: 20px; /* un peu moins */
 }
-
 .lcard__text {
-  font-family: var(--font-body); // Source Serif
-  font-size: 0.8vw;
+  font-family: var(--font-body);
+  font-size: 18px; /* comme partout, ton texte de contenu */
   line-height: 1.45;
-  margin-top: 0px;
 }
-
 .lcard__meta {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  padding-top: var(--s-2);
   font-family: var(--font-display);
-  font-size: 0.8vw;
-  padding-top: 16px;
+  font-size: 14px; /* ← plus de vw, méta discrète */
 }
 
 .lcard__cta {
