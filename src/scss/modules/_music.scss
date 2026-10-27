@@ -128,9 +128,8 @@ body:has(.art:not(.cat-page)) .footer-zone {
 }
 
 .art__block--feature .art__imgwrap {
-  min-height: 400px;
+  height: 400px;
 }
 .art__block {
   display: flex;
-  align-items: center;
 }

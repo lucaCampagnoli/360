@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
               });
             },
-            { rootMargin: "0px 0px -10% 0px" },
+            { rootMargin: "0px 0px -5% 0px" },
           );
           targets.forEach((t) => io.observe(t));
         }
@@ -758,4 +758,68 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.setAttribute("aria-expanded", open);
     });
   });
+  const intro = document.querySelector("[data-intro]");
+  if (intro) {
+    if (sessionStorage.getItem("introSeen")) {
+      intro.remove(); // déjà vue cette session → on saute
+    } else {
+      sessionStorage.setItem("introSeen", "1");
+
+      const logo = intro.querySelector(".intro__logo");
+      const DISPLAY = 2400; // durée du 360® à l'écran
+
+      const palette = ["#FF3300", "#0A4CE0", "#FFCA00", "#FFCDFF"];
+      const glitch = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&@!*<>";
+      function runGlitch(el) {
+        const spans = el.querySelectorAll(".ch");
+        const mid = (spans.length - 1) / 2;
+        spans.forEach((ch, i) => {
+          const delay = Math.abs(i - mid) * 60;
+          setTimeout(() => {
+            ch.style.color =
+              palette[Math.floor(Math.random() * palette.length)];
+            if (ch.dataset.orig.trim() && Math.random() > 0.4) {
+              ch.textContent =
+                glitch[Math.floor(Math.random() * glitch.length)];
+              setTimeout(() => (ch.textContent = ch.dataset.orig), 200);
+            }
+            setTimeout(() => (ch.style.color = ""), 350);
+          }, delay);
+        });
+      }
+
+      // découpe du logo en lettres
+      const text = logo.textContent;
+      logo.innerHTML = "";
+      [...text].forEach((c) => {
+        const s = document.createElement("span");
+        s.className = "ch";
+        s.textContent = c;
+        s.dataset.orig = c;
+        logo.appendChild(s);
+      });
+
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(() => intro.classList.add("is-ready")); // le logo apparaît
+
+      setTimeout(() => {
+        runGlitch(logo);
+        const loop = setInterval(() => runGlitch(logo), 700);
+        setTimeout(() => {
+          clearInterval(loop);
+          intro.classList.add("is-out"); // sortie balayée
+        }, DISPLAY);
+      }, 600); // laisse le logo finir son fondu
+
+      intro.addEventListener("transitionend", (e) => {
+        if (
+          e.target.classList.contains("intro__panel--pink") &&
+          intro.classList.contains("is-out")
+        ) {
+          intro.classList.add("is-done");
+          document.body.style.overflow = "";
+        }
+      });
+    }
+  }
 });

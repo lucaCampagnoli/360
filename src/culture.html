@@ -1,11 +1,247 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>culture</title>
+    <title>Culture — trois cent 60</title>
+    <link rel="stylesheet" href="scss/main.scss" />
   </head>
   <body>
-    culture
+    <div class="cursor"></div>
+    <include src="components/header.html"></include>
+
+    <article class="art art--culture cat-page">
+      <header class="art__head">
+        <h1 class="art__title">Culture</h1>
+      </header>
+
+      <div class="art__dash"></div>
+
+      <!-- À LA UNE (auto) -->
+      <div data-cat-hero="culture"></div>
+
+      <!-- ENCADRÉ ÉDITORIAL -->
+      <aside class="art__block">
+        <div class="art__block-text">
+          <h2 class="art__h2">Le tour complet</h2>
+          <p>
+            Sport, écrans, images : ce qui occupe vraiment les conversations,
+            décrypté sans hiérarchie — du parquet NBA au dernier film qu'on
+            s'envoie entre amis.
+          </p>
+        </div>
+      </aside>
+
+      <!-- POURQUOI ON REGARDE -->
+      <div class="art__content">
+        <div class="art__right">
+          <h2 class="art__h2">Pourquoi on regarde</h2>
+          <p>
+            Le sport, les films, les jeux ne sont pas des passe-temps : ce sont
+            les histoires qu'on se raconte en commun. Un match, une série, un
+            boss de fin — autant de moments qui rassemblent des millions de gens
+            autour de la même émotion.
+          </p>
+          <p>
+            Ici, on relie ce que les autres séparent : pourquoi la F1 est
+            devenue pop, pourquoi un studio de cinéma peut être plus cool qu'une
+            marque, pourquoi noter des films est devenu un sport social. La
+            culture, c'est tout ce qui nous fait dire « t'as vu ? ».
+          </p>
+          <h3 class="art__h3">Ce qu'on défend</h3>
+          <p>
+            Pas de snobisme : un blockbuster peut être génial, un film d'auteur
+            peut être creux. Ce qui compte, c'est ce que l'œuvre déclenche — pas
+            le prestige de sa case.
+          </p>
+        </div>
+        <div class="art__right">
+          <aside class="art__block art__block--feature">
+            <div class="art__block-text">
+              <h2 class="art__h2">L'obsession du mois</h2>
+              <p>
+                <strong>A24.</strong> Le studio qui a transformé le cinéma
+                indépendant en marque désirable. Films étranges, affiches
+                cultes, communauté fidèle : on ne va plus voir un film, on va
+                voir « un A24 ».
+              </p>
+            </div>
+            <div class="art__imgwrap">
+              <img class="art__img" src="assets/images/a24.jpg" alt="A24" />
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- EN BREF -->
+      <div class="art__brief">
+        <aside class="art__block brief-card" data-collapse>
+          <h3 class="art__h3">Sorties de la semaine</h3>
+          <ul>
+            <li>A24 — <em>nouveau long-métrage</em></li>
+            <li>Elden Ring — <em>extension</em></li>
+            <li>Letterboxd — <em>top de la rédaction</em></li>
+            <li>NBA — <em>reprise de saison</em></li>
+            <li>Netflix — <em>docu F1</em></li>
+          </ul>
+          <button
+            class="brief-card__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Dérouler"
+          >
+            <span class="brief-card__chevron">⌄</span>
+          </button>
+        </aside>
+
+        <aside class="art__block brief-card" data-collapse>
+          <h3 class="art__h3">À l'affiche</h3>
+          <ul>
+            <li>NBA — Paris Game, 18 jan.</li>
+            <li>Open d'Australie — Melbourne, 14 jan.</li>
+            <li>GP de F1 — Bahreïn, 2 mars</li>
+            <li>Festival du film — Genève, 20 mars</li>
+            <li>Masters de golf — Augusta, 9 avr.</li>
+          </ul>
+          <button
+            class="brief-card__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Dérouler"
+          >
+            <span class="brief-card__chevron">⌄</span>
+          </button>
+          <a class="next-article" data-cat-next="culture" href="#">
+            <div class="next-article__text">
+              <span class="next-article__label"
+                >Forcez le scroll pour lire</span
+              >
+              <span class="next-article__title"></span>
+            </div>
+            <span class="next-article__arrow">→</span>
+          </a>
+        </aside>
+      </div>
+
+      <!-- ARTICLE EXCLUSIF -->
+      <article class="art art--culture">
+        <header class="art__head">
+          <h1 class="art__title">Le padel, la conquête discrète</h1>
+        </header>
+
+        <div class="art__dash"></div>
+
+        <div class="art__content">
+          <div class="art__right">
+            <h2 class="art__h2">Un sport pensé pour être partagé</h2>
+            <p>
+              Le génie du padel tient en une chose : il est fait pour jouer à
+              quatre. Pas de face-à-face intimidant comme au tennis, pas de
+              niveau minimum pour s'amuser dès le premier jour. On rit, on rate,
+              on marque, et surtout on partage.
+              <strong
+                >C'est un sport social avant d'être une discipline.</strong
+              >
+            </p>
+            <p>
+              Les murs renvoient la balle, les échanges durent, et même les
+              débutants ont des points spectaculaires. Là où la plupart des
+              sports punissent le manque de technique, celui-ci récompense
+              l'envie. Résultat : on accroche vite, et on revient.
+            </p>
+            <h3 class="art__h3">Facile à aimer, dur à lâcher</h3>
+            <p>
+              Cette accessibilité est une machine à fidéliser. En une partie, on
+              comprend les règles ; en un mois, on est accro. Le padel a réussi
+              là où beaucoup échouent : rendre le plaisir immédiat.
+            </p>
+          </div>
+          <div class="art__left">
+            <div class="art__textblock">
+              <div class="art__meta">
+                <span>Par Guillaume Bon</span><span>19 octobre</span>
+                <span class="art__readtime"></span>
+              </div>
+            </div>
+            <p class="art__chapo">
+              <strong
+                >En quelques années, des courts vitrés ont poussé partout, sans
+                qu'on s'en aperçoive vraiment.</strong
+              >
+              Le padel n'est pas qu'un sport : c'est un phénomène social,
+              économique et générationnel — et il raconte beaucoup de notre
+              époque.
+            </p>
+            <div class="art__imgwrap">
+              <img
+                class="art__img"
+                src="assets/images/padel.jpg"
+                alt="Le padel"
+              />
+            </div>
+          </div>
+        </div>
+
+        <aside class="art__block">
+          <div class="art__imgwrap">
+            <img class="art__img" src="assets/images/padel-2.jpg" alt="" />
+          </div>
+          <div class="art__block-text">
+            <h2 class="art__h2">L'argent a flairé le filon</h2>
+            <p>
+              Là où il y a une foule, l'argent suit. Fonds d'investissement,
+              anciennes stars du foot, marques de sport : tout le monde a voulu
+              sa part. Construire un court coûte peu, se rentabilise vite, et la
+              demande explose.
+              <strong
+                >Le padel est devenu un business autant qu'un loisir.</strong
+              >
+            </p>
+            <p>
+              Des footballeurs parmi les plus connus de la planète ont investi
+              dans des clubs, prêté leur image, lancé des tournois. Le même
+              schéma que la culture pop : ce qui rassemble se monétise.
+            </p>
+          </div>
+        </aside>
+
+        <div class="art__content">
+          <div class="art__right">
+            <h2 class="art__h2">Le club, nouveau lieu social</h2>
+            <p>
+              Le court n'est qu'une partie de l'histoire. Autour, il y a le bar,
+              la terrasse, les copains. Le club de padel est devenu un troisième
+              lieu, entre le boulot et la maison.
+              <strong>On y va autant pour jouer que pour se voir.</strong>
+            </p>
+          </div>
+          <div class="art__right">
+            <h3 class="art__h3">Entre le sport et l'apéro</h3>
+            <p>
+              C'est peut-être ça, la vraie nouveauté : un sport qui ne se prend
+              pas trop au sérieux. On transpire, puis on trinque. À une époque
+              où tout devient performance, le padel réhabilite le plaisir sans
+              objectif.
+            </p>
+          </div>
+        </div>
+
+        <blockquote class="art__quote">
+          Le padel n'a pas gagné parce qu'il est spectaculaire.
+          <strong>Il a gagné parce qu'il nous remet ensemble.</strong>
+        </blockquote>
+
+        <div class="art__foot">
+          <span class="art__tags">#padel #sport #social #phénomène</span>
+          <span class="art__credits">Crédits — Rédaction : trois cent 60</span>
+        </div>
+      </article>
+
+      <!-- À LIRE AUSSI (auto) -->
+      <section class="related" data-cat-related="culture"></section>
+    </article>
+
+    <include src="components/big-footer.html"></include>
+    <script src="js/main.js" type="module"></script>
   </body>
 </html>

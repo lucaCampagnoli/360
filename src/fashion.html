@@ -1,11 +1,254 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fashion</title>
+    <title>Fashion — trois cent 60</title>
+    <link rel="stylesheet" href="scss/main.scss" />
   </head>
   <body>
-    fashion
+    <div class="cursor"></div>
+    <include src="components/header.html"></include>
+
+    <article class="art art--fashion cat-page">
+      <header class="art__head">
+        <h1 class="art__title">Fashion</h1>
+      </header>
+
+      <div class="art__dash"></div>
+
+      <!-- À LA UNE (auto) -->
+      <div data-cat-hero="fashion"></div>
+
+      <!-- ENCADRÉ ÉDITORIAL -->
+      <aside class="art__block">
+        <div class="art__block-text">
+          <h2 class="art__h2">Le vestiaire de l'époque</h2>
+          <p>
+            De la rue aux podiums : les marques, les silhouettes et les gestes
+            qui redessinent ce qu'on porte — et ce qu'on devient en le portant.
+          </p>
+        </div>
+      </aside>
+
+      <!-- POURQUOI ON S'HABILLE -->
+      <div class="art__content">
+        <div class="art__right">
+          <h2 class="art__h2">Pourquoi on s'habille</h2>
+          <p>
+            La mode n'est pas futile. C'est la première phrase qu'on prononce
+            sans parler : avant un mot, un vêtement dit d'où l'on vient, ce
+            qu'on refuse, ce qu'on veut devenir.
+          </p>
+          <p>
+            Ici, on ne suit pas les tendances, on les lit : pourquoi une marque
+            explose, pourquoi une silhouette revient, pourquoi un drop fait la
+            queue un dimanche matin. De la friperie au défilé, on regarde ce que
+            le vêtement raconte de l'époque.
+          </p>
+          <h3 class="art__h3">Ce qu'on défend</h3>
+          <p>
+            Pas de hiérarchie entre le luxe et la seconde main : le style ne
+            s'achète pas, il se compose. Une pièce chère mal portée vaut moins
+            qu'un basique bien choisi. On juge l'allure, pas l'étiquette.
+          </p>
+        </div>
+        <div class="art__right">
+          <aside class="art__block art__block--feature">
+            <div class="art__block-text">
+              <h2 class="art__h2">La marque du mois</h2>
+              <p>
+                <strong>Corteiz.</strong> Pas de pub, pas de boutique, pas de
+                compromis. La marque londonienne a fait de la rareté une
+                religion et du refus un manifeste — chaque drop est un
+                événement.
+              </p>
+            </div>
+            <div class="art__imgwrap">
+              <img
+                class="art__img"
+                src="assets/images/corteiz.jpg"
+                alt="Corteiz"
+              />
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- EN BREF -->
+      <div class="art__brief">
+        <aside class="art__block brief-card" data-collapse>
+          <h3 class="art__h3">Drops de la semaine</h3>
+          <ul>
+            <li>Corteiz — <em>capsule hiver</em></li>
+            <li>Schiaparelli — <em>collection couture</em></li>
+            <li>Mertra — <em>nouvelle vague</em></li>
+            <li>Gucci — <em>nouveau cap</em></li>
+            <li>Victoria's Secret — <em>le retour</em></li>
+          </ul>
+          <button
+            class="brief-card__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Dérouler"
+          >
+            <span class="brief-card__chevron">⌄</span>
+          </button>
+        </aside>
+
+        <aside class="art__block brief-card" data-collapse>
+          <h3 class="art__h3">À l'agenda</h3>
+          <ul>
+            <li>Fashion Week — Paris, 25 fév.</li>
+            <li>Schiaparelli — défilé couture, 3 mars</li>
+            <li>Pop-up Corteiz — Londres, 10 mars</li>
+            <li>Salon vintage — Genève, 18 mars</li>
+            <li>Gala Met — New York, 5 mai</li>
+          </ul>
+          <button
+            class="brief-card__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Dérouler"
+          >
+            <span class="brief-card__chevron">⌄</span>
+          </button>
+          <a class="next-article" data-cat-next="fashion" href="#">
+            <div class="next-article__text">
+              <span class="next-article__label"
+                >Forcez le scroll pour lire</span
+              >
+              <span class="next-article__title"></span>
+            </div>
+            <span class="next-article__arrow">→</span>
+          </a>
+        </aside>
+      </div>
+
+      <!-- ARTICLE EXCLUSIF -->
+      <article class="art art--fashion">
+        <header class="art__head">
+          <h1 class="art__title">Jacquemus, l'enfant du Sud</h1>
+        </header>
+
+        <div class="art__dash"></div>
+
+        <div class="art__content">
+          <div class="art__right">
+            <h2 class="art__h2">Le vêtement comme carte postale</h2>
+            <p>
+              Avant d'être un créateur, Simon Porte Jacquemus est un conteur.
+              Ses collections ne parlent pas de tissu, elles parlent du Sud de
+              la France : le soleil, la mer, les champs, l'enfance. On n'achète
+              pas une chemise, on achète un souvenir qu'on n'a jamais eu.
+              <strong
+                >C'est ça, sa vraie matière première : la nostalgie d'un
+                ailleurs.</strong
+              >
+            </p>
+            <p>
+              Dans un secteur obsédé par la nouveauté, il a fait le choix de
+              l'intime. Parler de sa mère, de son village, de ses racines, quand
+              tout le monde parlait de futur. Et contre toute attente, c'est ce
+              retour au personnel qui a touché le monde entier.
+            </p>
+            <h3 class="art__h3">Vendre un lieu, pas une pièce</h3>
+            <p>
+              Ses défilés le prouvent : un podium posé au milieu d'un champ de
+              lavande, une autre fois dans les salines, une autre dans un champ
+              de blé. Le décor n'est pas un fond, c'est le produit. L'émotion
+              précède le vêtement.
+            </p>
+          </div>
+          <div class="art__left">
+            <div class="art__textblock">
+              <div class="art__meta">
+                <span>Par Octave Reine</span><span>21 octobre</span>
+                <span class="art__readtime"></span>
+              </div>
+            </div>
+            <p class="art__chapo">
+              <strong
+                >Un champ de lavande, un sac minuscule, un gamin de la
+                campagne.</strong
+              >
+              Jacquemus n'a pas vendu des vêtements : il a vendu une histoire.
+              Et c'est peut-être la meilleure leçon de mode de la décennie.
+            </p>
+            <div class="art__imgwrap">
+              <img
+                class="art__img"
+                src="assets/images/jacquemus.jpg"
+                alt="Jacquemus"
+              />
+            </div>
+          </div>
+        </div>
+
+        <aside class="art__block">
+          <div class="art__imgwrap">
+            <img class="art__img" src="assets/images/jacquemus-2.jpg" alt="" />
+          </div>
+          <div class="art__block-text">
+            <h2 class="art__h2">Le défilé est devenu le produit</h2>
+            <p>
+              Longtemps, un défilé servait à vendre une collection. Chez
+              Jacquemus, il s'est inversé : le défilé <em>est</em> la collection
+              la plus vendue. Pas en pièces, en images.
+              <strong
+                >Une vidéo d'un podium dans la lavande vaut plus qu'une pleine
+                page de magazine.</strong
+              >
+            </p>
+            <p>
+              C'est la grande bascule de l'époque : la mode ne se joue plus dans
+              les boutiques mais sur les écrans. Ce qui compte, ce n'est plus
+              combien de gens portent la pièce, c'est combien de gens la voient
+              défiler.
+            </p>
+          </div>
+        </aside>
+
+        <div class="art__content">
+          <div class="art__right">
+            <h2 class="art__h2">L'image avant le tissu</h2>
+            <p>
+              Jacquemus a compris Instagram mieux que quiconque. Couleurs qui
+              claquent, mises en scène absurdes et parfaites, un sens du cadre
+              qui transforme chaque post en carte postale.
+              <strong
+                >Il ne fait pas de la mode qu'on photographie ; il fait des
+                photographies qu'on habille.</strong
+              >
+            </p>
+          </div>
+          <div class="art__right">
+            <h3 class="art__h3">Le micro-sac, maxi-symbole</h3>
+            <p>
+              Le fameux sac minuscule, trop petit pour y ranger quoi que ce
+              soit, résume tout : un objet inutile devenu viral précisément
+              parce qu'il est absurde. La fonction a disparu ; reste le signe.
+              Et le signe, lui, se vend par milliers.
+            </p>
+          </div>
+        </div>
+
+        <blockquote class="art__quote">
+          Il n'a pas gagné en faisant de plus beaux vêtements.
+          <strong>Il a gagné en racontant une meilleure histoire.</strong>
+        </blockquote>
+
+        <div class="art__foot">
+          <span class="art__tags">#mode #jacquemus #storytelling #image</span>
+          <span class="art__credits">Crédits — Rédaction : trois cent 60</span>
+        </div>
+      </article>
+
+      <!-- À LIRE AUSSI (auto) -->
+      <section class="related" data-cat-related="fashion"></section>
+    </article>
+
+    <include src="components/big-footer.html"></include>
+    <script src="js/main.js" type="module"></script>
   </body>
 </html>

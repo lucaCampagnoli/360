@@ -29,3 +29,80 @@ body {
 body .header {
   position: fixed !important;
 }
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+.intro.is-done {
+  display: none;
+}
+
+.intro__panel {
+  position: absolute;
+  inset: 0;
+  transform: translateY(
+    0
+  ); /* ← couvre l'écran DÈS le départ : plus de site visible */
+  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.intro__panel--blue {
+  z-index: 4;
+  background: #0a4ce0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.intro__panel--red {
+  z-index: 3;
+  background: var(--color-mode);
+}
+.intro__panel--yellow {
+  z-index: 2;
+  background: var(--color-culture);
+}
+.intro__panel--pink {
+  z-index: 1;
+  background: var(--color-theme);
+}
+
+.intro__logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15vw;
+  line-height: 1;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.45s ease 0.15s,
+    transform 0.45s ease 0.15s;
+}
+.intro__logo .ch {
+  display: inline-block;
+  transition: color 0.15s ease;
+}
+
+/* le logo apparaît */
+.intro.is-ready .intro__logo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* sortie : les couleurs balaient vers le haut, en cascade */
+.intro.is-out .intro__panel {
+  transform: translateY(-100%);
+}
+.intro.is-out .intro__panel--blue {
+  transition-delay: 0s;
+}
+.intro.is-out .intro__panel--red {
+  transition-delay: 0.1s;
+}
+.intro.is-out .intro__panel--yellow {
+  transition-delay: 0.2s;
+}
+.intro.is-out .intro__panel--pink {
+  transition-delay: 0.3s;
+}
