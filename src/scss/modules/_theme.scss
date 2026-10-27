@@ -74,12 +74,11 @@
 }
 
 @media (max-width: 768px) {
-  .themes {
-    flex-direction: column;
-    min-height: auto;
-  }
-  .theme-card:hover {
-    flex: 1;
+  .themes.themes--home {
+    min-height: auto; /* plus de hauteur plein écran */
+    justify-content: flex-start; /* on colle en haut */
+    margin-block: 0; /* annule la marge haut/bas */
+    padding-block: var(--s-5);
   }
 }
 
@@ -103,12 +102,6 @@
   letter-spacing: 0.1em;
   opacity: 0.6;
 }
-.themes__title {
-  font-family: "Europa_Grotesk", sans-serif;
-  font-size: var(--t-display);
-  line-height: var(--leading-tight);
-  margin-top: var(--s-2);
-}
 
 /* ===== PAGE THÈME — lignes footer + remplissage accent ===== */
 .themes {
@@ -130,7 +123,7 @@
   font-family: "Europa_Grotesk", sans-serif;
   font-size: var(--t-display);
   line-height: var(--leading-tight);
-  margin-top: var(--s-2);
+  margin-top: 0px;
 }
 
 .theme-row {
@@ -224,9 +217,6 @@
     opacity: 1;
     transform: none;
   }
-}
-
-@media (max-width: 768px) {
   .theme-row {
     flex-wrap: wrap;
     gap: var(--s-2);
@@ -331,5 +321,5 @@
   margin-block: var(--s-6);
 }
 .themes--home .themes__title {
-  font-size: var(--t-h2);
+  font-size: var(--t-display);
 }

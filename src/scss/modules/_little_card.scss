@@ -126,3 +126,35 @@
 .culture_list {
   --lcard-bg: var(--color-theme);
 } // rose
+
+@media (max-width: 768px) {
+  /* cartes du bandeau : on resserre pour la lisibilité */
+  .lcard {
+    min-height: 0; /* la carte épouse son contenu → moins de vide */
+    padding: var(--s-4);
+    gap: var(--s-2);
+  }
+  .lcard__title {
+    font-size: 45px;
+    line-height: 0.95;
+  }
+  .lcard__sub {
+    font-size: 15px;
+  }
+  .lcard__text {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* la méta tient enfin sur une ligne */
+  .lcard__meta {
+    font-size: 11px;
+    gap: var(--s-2);
+  }
+  .lcard__meta span {
+    white-space: nowrap;
+  }
+  .lcard {
+    padding: 25px 25px;
+  }
+}

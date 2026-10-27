@@ -191,6 +191,14 @@
   .art__img {
     height: 50vh;
   }
+  .art__title {
+    font-size: 70px;
+  }
+  .art__h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+  }
 }
 /* ===== MOBILE — réparation des images + ajustements ===== */
 @media (max-width: 768px) {

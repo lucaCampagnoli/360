@@ -75,6 +75,9 @@
   .gallery__title {
     font-size: 24vw;
   }
+  .gallery__head {
+    padding: 0 var(--s-2) var(--s-4);
+  }
   .gallery__item {
     width: 180px;
   }

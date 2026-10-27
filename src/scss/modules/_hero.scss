@@ -107,13 +107,16 @@
   }
   .laune__card--big {
     grid-row: auto;
-    min-height: 340px;
+    min-height: 540px;
   }
   .laune__card--small {
-    min-height: 220px;
+    min-height: 300px;
+  }
+  .laune__heading {
+    font-size: 70px;
   }
 }
-/* en-tête de section */
+
 .laune__head {
   display: flex;
   align-items: baseline;
@@ -125,7 +128,7 @@
 .laune__heading {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: var(--t-h2);
+  font-size: var(--t-display);
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }

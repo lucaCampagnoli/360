@@ -108,11 +108,14 @@
     font-size: 14vw;
   }
   .theme-row__desc {
-    max-width: none;
-    text-align: left;
+    display: none;
   }
   .theme-row__arrow {
-    opacity: 1;
+    opacity: 0;
     transform: none;
+  }
+  .theme-row:hover .theme-row__arrow {
+    opacity: 0;
+    transform: translateX(0);
   }
 }

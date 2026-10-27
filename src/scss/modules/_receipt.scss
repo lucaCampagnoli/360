@@ -1,5 +1,7 @@
 .receipt {
-  width: 320px;
+  width: min(92vw, 340px); /* ← au lieu de width: 100% */
+  max-width: 100%;
+  margin: 0 auto;
   margin: 60px auto;
   background: #fff;
   color: #1f1f1f;
@@ -98,4 +100,19 @@
   text-align: center;
   font-size: 15px;
   margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .receipt {
+    transform: scale(1); /* ← on enlève le scale 1.1 qui faisait déborder */
+    margin: 0 auto;
+    font-size: 16px;
+    padding: 20px 16px;
+  }
+  .receipt__logo {
+    font-size: 30px;
+  }
+  .receipt__barcode {
+    font-size: 42px;
+  }
 }

@@ -72,3 +72,26 @@
   display: flex;
   gap: 16px;
 }
+@media (max-width: 768px) {
+  /* on cache les grands mots et les coins : le ticket suffit */
+  .bigfoot {
+    display: none;
+  }
+  .footer-zone__corners {
+    display: none;
+  }
+
+  .footer-zone {
+    background: var(
+      --color-ink
+    ); /* fond sombre pour faire ressortir le ticket */
+    padding: 48px 16px;
+  }
+
+  /* le ticket passe en flux normal → il n'empiète plus sur la galerie */
+  .footer-zone__ticket {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+}
